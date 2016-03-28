@@ -51,6 +51,7 @@ def read_ptm_db(ptm_database):
             ptm_database = open(ptm_database, 'r')
             id, tg, mm, ptm_types, ptm_masses = None, None, None, {}, {}
             for line in ptm_database:
+                if line[:2] not in ['ID', 'AC', 'FT', 'TG', 'PA', 'PP', 'CF', 'MM', 'MA', 'LC', 'TR', 'KW', 'DR', '//']: continue #Ignore the header information
                 line = line.split()
                 if line[0] != '//':
                     if id != None and id not in ptm_types: ptm_types[id] = tg
