@@ -88,7 +88,7 @@ print MYDUMP "Accession\tBase Peptide\tStart Residue\tMass Error\tPTM Type\tAA\t
 $xml = new XML::Simple (ForceArray => 1,KeyAttr=>[]);
  
 # read XML file
-$data = $xml->XMLin("uniprot.xml");#####################          XML DATABASE FILE ########################
+$data = $xml->XMLin("/mnt/Data/ShortreedXMLData/zafira_wide_mass/perl-test/uniprot.xml");#####################          XML DATABASE FILE ########################
  
  
 # dereference hash ref
