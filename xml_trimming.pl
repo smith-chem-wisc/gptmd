@@ -88,7 +88,7 @@ print MYDUMP "Accession\tBase Peptide\tStart Residue\tMass Error\tPTM Type\tAA\t
 $xml = new XML::Simple (ForceArray => 1,KeyAttr=>[]);
  
 # read XML file
-$data = $xml->XMLin("/mnt/Data/ShortreedXMLData/zafira_wide_mass/perl-test/uniprot.xml");#####################          XML DATABASE FILE ########################
+$data = $xml->XMLin("uniprot.xml");#####################          XML DATABASE FILE ########################
  
  
 # dereference hash ref
@@ -102,9 +102,21 @@ foreach $e (@{$data->{entry}})
               $local_entry_data_hash{entry_modified}= $e->{modified}, "\t";
               $local_entry_data_hash{entry_version}= $e->{version}, "\n";
               my $first_accession = $e->{accession}->[0]; #could go back later and add the other accession numbers???
+			  print MYDUMP $first_accession, "\t";
               $local_entry_data_hash{name}= $e->{name}->[0];
               $local_entry_data_hash{fullName}= $e->{protein}->[0]->{recommendedName}->[0]->{fullName}->[0];
-              $local_entry_data_hash{gene}=$e->{gene}->[0]->{name}->[0]->{content};
+			  if (defined $local_entry_data_hash{fullName}) 
+				  {
+				  if(ref($local_entry_data_hash{fullName}) eq "HASH")
+					  {
+					  $local_entry_data_hash{fullName} = $first_accession;
+					  }  
+				  }
+			  else  
+				  {
+				  $local_entry_data_hash{fullName} = $first_accession;
+				  }
+			  $local_entry_data_hash{gene}=$e->{gene}->[0]->{name}->[0]->{content};
               $local_entry_data_hash{organism_name}=$e->{organism}->[0]->{name}->[0]->{content}, "\n";
               $local_entry_data_hash{dbReference_id}=$e->{organism}->[0]->{dbReference}->[0]->{id};
               $local_entry_data_hash{dbReference_type}=$e->{organism}->[0]->{dbReference}->[0]->{type};

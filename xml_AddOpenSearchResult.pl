@@ -104,6 +104,17 @@ foreach $e (@{$data->{entry}})
               my $first_accession = $e->{accession}->[0]; #could go back later and add the other accession numbers???
               $local_entry_data_hash{name}= $e->{name}->[0];
               $local_entry_data_hash{fullName}= $e->{protein}->[0]->{recommendedName}->[0]->{fullName}->[0];
+			  if (defined $local_entry_data_hash{fullName}) 
+				  {
+				  if(ref($local_entry_data_hash{fullName}) eq "HASH")
+					  {
+					  $local_entry_data_hash{fullName} = $first_accession;
+					  }  
+				  }
+			  else  
+				  {
+				  $local_entry_data_hash{fullName} = $first_accession;
+				  }
               $local_entry_data_hash{gene}=$e->{gene}->[0]->{name}->[0]->{content};
               $local_entry_data_hash{organism_name}=$e->{organism}->[0]->{name}->[0]->{content}, "\n";
               $local_entry_data_hash{dbReference_id}=$e->{organism}->[0]->{dbReference}->[0]->{id};
