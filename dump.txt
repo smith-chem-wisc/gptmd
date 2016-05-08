@@ -1,1 +1,0 @@
-Accession	Base Peptide	Start Residue	Mass Error	PTM Type	AA	Position
