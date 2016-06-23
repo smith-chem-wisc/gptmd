@@ -24,7 +24,7 @@ open(MYOUTFILE, ">$xml_deref"); #open for write, overwrite
 $xml = new XML::Simple (ForceArray => 1,KeyAttr=>[]);
  
 # read XML file
-$data = $xml->XMLin("uniprot.xml");#####################          XML DATABASE FILE ########################
+$data = $xml->XMLin("uniprot-all.xml");#####################          XML DATABASE FILE ########################
 
 
 print MYOUTFILE '<?xml version=\'1.0\' encoding=\'UTF-8\'?>', "\n";
@@ -85,7 +85,7 @@ foreach my $AN (sort keys %observed_uniprot_ptms)
 #####   START - Write New XML Database with Novel PTMs        #####
 foreach my $AN (sort keys %global_sequence_data)
 	{
-		if((index(${$global_sequence_data{$AN}}{content},'B')==-1)&&(index(${$global_sequence_data{$AN}}{content},'B')==-1))
+		if((index(${$global_sequence_data{$AN}}{content},'Z')==-1)&&(index(${$global_sequence_data{$AN}}{content},'B')==-1))
 			{
 				print MYOUTFILE '<entry dataset="', ${$global_sequence_data{$AN}}{dataset},'" created="', ${$global_sequence_data{$AN}}{entry_created},'" modified="', ${$global_sequence_data{$AN}}{entry_modified},'" version="', ${$global_sequence_data{$AN}}{entry_version},'">',"\n";
 				print MYOUTFILE '<accession>',$AN ,'</accession>',"\n";

@@ -1,0 +1,579 @@
+ID	Trimethyllysine
+FT	MOD_RES
+TG	Lysine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C3 H6
+MM	42.04695
+MA	42.08
+LC	Intracellular localisation
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Methylation
+ZZ
+ID	Ammonia loss from Asn
+FT	MOD_RES
+TG	Asparagine
+PA	Amino acid side chain
+PP	Anywhere
+CF	H-3 N-1
+MM	-17.02655
+MA	-17.03
+LC	Intracellular localisation
+TR	Archaea; taxId:28890 (Euryarchaeota)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+ZZ
+ID	Ammonia loss from Gln
+FT	MOD_RES
+TG	Glutamine
+PA	Amino acid side chain
+PP	Anywhere
+CF	H-3 N-1
+MM	-17.02655
+MA	-17.03
+LC	Intracellular localisation
+TR	Archaea; taxId:28890 (Euryarchaeota)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+ZZ
+ID	Water loss from Glu
+FT	MOD_RES
+TG	Glutamate
+PA	Amino acid side chain
+PP	Anywhere
+CF	H-2 O-1
+MM	-18.010565
+MA	-18.02
+LC	Intracellular localisation
+TR	Archaea; taxId:28890 (Euryarchaeota)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+ZZ
+ID	Water loss from Asp
+FT	MOD_RES
+TG	Aspartate
+PA	Amino acid side chain
+PP	Anywhere
+CF	H-2 O-1
+MM	-18.010565
+MA	-18.02
+LC	Intracellular localisation
+TR	Archaea; taxId:28890 (Euryarchaeota)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+ZZ
+ID	2,3-didehydroalanine (Ser)
+AC	PTM-0006
+FT	MOD_RES
+TG	Serine
+PA	Amino acid backbone
+PP	Protein core
+CF	H-2 O-1
+MM	-18.010565
+MA	-18.02
+LC	Intracellular localisation
+TR	Archaea; taxId:28890 (Euryarchaeota)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+DR	RESID; AA0181
+DR	PSI-MOD; 00189
+ZZ
+ID	2,3-didehydrobutyrine
+AC	PTM-0007
+FT	MOD_RES
+TG	Threonine
+PA	Amino acid backbone
+PP	Protein core
+CF	H-2 O-1
+MM	-18.010565
+MA	-18.02
+LC	Extracellular localisation
+TR	Bacteria; taxId:1239 (Firmicutes)
+DR	RESID; AA0182
+DR	RESID; AA0547
+DR	PSI-MOD; 00190
+DR	PSI-MOD; 01841
+ZZ
+ID	4-carboxyglutamate
+AC	PTM-0039
+FT	MOD_RES
+TG	Glutamate
+PA	Amino acid side chain
+PP	Anywhere
+CF	C1 O2
+MM	43.989829
+MA	44.01
+LC	Extracellular and lumenal localisation
+TR	Eukaryota; taxId:6447 (Mollusca), taxId:7742 (Vertebrata)
+KW	Gamma-carboxyglutamic acid
+DR	RESID; AA0032
+DR	PSI-MOD; 00041
+ZZ
+ID	Deamidated asparagine
+AC	PTM-0116
+FT	MOD_RES
+TG	Asparagine
+PA	Amino acid side chain
+PP	Anywhere
+CF	H-1 N-1 O1
+MM	0.984016
+MA	0.98
+LC	Intracellular localisation or Extracellular and lumenal localisation
+TR	Eukaryota; taxId:3702 (Arabidopsis thaliana), taxId:7742 (Vertebrata)
+DR	RESID; AA0004
+DR	PSI-MOD; 00684
+ZZ
+ID	Deamidated glutamine
+AC	PTM-0117
+FT	MOD_RES
+TG	Glutamine
+PA	Amino acid side chain
+PP	Anywhere
+CF	H-1 N-1 O1
+MM	0.984016
+MA	0.98
+LC	Intracellular localisation or Extracellular and lumenal localisation
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:7742 (Vertebrata)
+DR	RESID; AA0006
+DR	PSI-MOD; 00685
+ZZ
+ID	Dimethylated arginine
+AC	PTM-0341
+FT	MOD_RES
+TG	Arginine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C2 H4
+MM	28.031300
+MA	28.05
+LC	Intracellular localisation
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Methylation
+DR	PSI-MOD; 00783
+ZZ
+ID	5-hydroxylysine
+AC	PTM-0044
+FT	MOD_RES
+TG	Lysine
+PA	Amino acid side chain
+PP	Anywhere
+CF	O1
+MM	15.994915
+MA	16.00
+LC	Extracellular and lumenal localisation
+TR	Eukaryota; taxId:33208 (Metazoa)
+KW	Hydroxylation
+DR	RESID; AA0028
+DR	PSI-MOD; 00037
+ZZ
+ID	Hydroxyproline
+AC	PTM-0149
+FT	MOD_RES
+TG	Proline
+PA	Amino acid side chain
+PP	Anywhere
+CF	O1
+MM	15.994915
+MA	16.00
+LC	Extracellular and lumenal localisation
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Hydroxylation
+DR	PSI-MOD; 00678
+ZZ
+ID	Methylhistidine
+AC	PTM-0176
+FT	MOD_RES
+TG	Histidine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C1 H2
+MM	14.015650
+MA	14.03
+LC	Intracellular localisation
+TR	Archaea; taxId:28890 (Euryarchaeota)
+TR	Eukaryota; taxId:5791 (Physarum polycephalum), taxId:7742 (Vertebrata)
+KW	Methylation
+DR	PSI-MOD; 00661
+ZZ
+ID	N4,N4-dimethylasparagine
+AC	PTM-0182
+FT	MOD_RES
+TG	Asparagine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C2 H4
+MM	28.031300
+MA	28.05
+LC	Extracellular and lumenal localisation
+TR	Eukaryota; taxId:9606 (Homo sapiens)
+KW	Methylation
+DR	RESID; AA0311
+DR	PSI-MOD; 00316
+ZZ
+ID	N4-methylasparagine
+AC	PTM-0183
+FT	MOD_RES
+TG	Asparagine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C1 H2
+MM	14.015650
+MA	14.03
+LC	Intracellular localisation
+TR	Bacteria; taxId:1117 (Cyanobacteria)
+TR	Eukaryota; taxId:2763 (Rhodophyta), taxId:3027 (Cryptophyta), taxId:38254 (Glaucocystophyceae)
+KW	Methylation
+DR	RESID; AA0070
+DR	PSI-MOD; 00079
+ZZ
+ID	N5-methylarginine
+AC	PTM-0184
+FT	MOD_RES
+TG	Arginine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C1 H2
+MM	14.015650
+MA	14.03
+LC	Intracellular localisation
+TR	Eukaryota; taxId:4932 (Saccharomyces cerevisiae)
+KW	Methylation
+DR	RESID; AA0305
+DR	PSI-MOD; 00310
+ZZ
+ID	N5-methylglutamine
+AC	PTM-0185
+FT	MOD_RES
+TG	Glutamine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C1 H2
+MM	14.015650
+MA	14.03
+LC	Intracellular localisation
+TR	Bacteria; taxId:1224 (Proteobacteria)
+TR	Eukaryota; taxId:4932 (Saccharomyces cerevisiae)
+KW	Methylation
+DR	RESID; AA0071
+DR	PSI-MOD; 00080
+ZZ
+ID	N6,N6-dimethyllysine
+AC	PTM-0188
+FT	MOD_RES
+TG	Lysine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C2 H4
+MM	28.031300
+MA	28.05
+LC	Intracellular localisation
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Methylation
+DR	RESID; AA0075
+DR	PSI-MOD; 00084
+ZZ
+ID	N6-acetyllysine
+AC	PTM-0190
+FT	MOD_RES
+TG	Lysine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Archaea; taxId:2157 (Archaea)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Acetylation
+DR	RESID; AA0055
+DR	PSI-MOD; 00064
+ZZ
+ID	N6-methyllysine
+AC	PTM-0194
+FT	MOD_RES
+TG	Lysine
+PA	Amino acid side chain
+PP	Anywhere
+CF	C1 H2
+MM	14.015650
+MA	14.03
+LC	Intracellular localisation
+TR	Archaea; taxId:2157 (Archaea)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Methylation
+DR	RESID; AA0076
+DR	PSI-MOD; 00085
+ZZ
+ID	N-acetylalanine
+AC	PTM-0199
+FT	MOD_RES
+TG	Alanine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Bacteria; taxId:1224 (Proteobacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Acetylation
+DR	RESID; AA0041
+DR	PSI-MOD; 00050
+ZZ
+ID	N-acetylaspartate
+AC	PTM-0200
+FT	MOD_RES
+TG	Aspartate
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Acetylation
+DR	RESID; AA0042
+DR	PSI-MOD; 00051
+ZZ
+ID	N-acetylated lysine
+AC	PTM-0482
+FT	MOD_RES
+TG	Lysine
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+TR	Archaea; taxId:2157 (Archaea)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Acetylation
+DR	PSI-MOD; 00723
+ZZ
+ID	N-acetylcysteine
+AC	PTM-0201
+FT	MOD_RES
+TG	Cysteine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Archaea; taxId:28890 (Euryarchaeota)
+TR	Eukaryota; taxId:7742 (Vertebrata)
+KW	Acetylation
+DR	RESID; AA0043
+DR	PSI-MOD; 00052
+ZZ
+ID	N-acetylglutamate
+AC	PTM-0202
+FT	MOD_RES
+TG	Glutamate
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Eukaryota; taxId:33316 (Coelomata)
+KW	Acetylation
+DR	RESID; AA0044
+DR	PSI-MOD; 00053
+ZZ
+ID	N-acetylglycine
+AC	PTM-0203
+FT	MOD_RES
+TG	Glycine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Acetylation
+DR	RESID; AA0046
+DR	PSI-MOD; 00055
+ZZ
+ID	N-acetylisoleucine
+AC	PTM-0204
+FT	MOD_RES
+TG	Isoleucine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Eukaryota; taxId:10116 (Rattus norvegicus)
+TR	Bacteria; taxId:2 (Bacteria)
+KW	Acetylation
+DR	RESID; AA0047
+DR	PSI-MOD; 00056
+ZZ
+ID	N-acetylmethionine
+AC	PTM-0205
+FT	MOD_RES
+TG	Methionine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Archaea; taxId:2287 (Sulfolobus solfataricus)
+TR	Bacteria; taxId:1270 (Micrococcus luteus)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Acetylation
+DR	RESID; AA0049
+DR	PSI-MOD; 00058
+ZZ
+ID	N-acetylproline
+AC	PTM-0206
+FT	MOD_RES
+TG	Proline
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Eukaryota; taxId:33090 (Viridiplantae), taxId:40674 (Mammalia)
+TR	Bacteria; taxId:2 (Bacteria)
+KW	Acetylation
+DR	RESID; AA0050
+DR	PSI-MOD; 00059
+ZZ
+ID	N-acetylserine
+AC	PTM-0207
+FT	MOD_RES
+TG	Serine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Archaea; taxId:2157 (Archaea)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Acetylation
+DR	RESID; AA0051
+DR	PSI-MOD; 00060
+ZZ
+ID	N-acetylthreonine
+AC	PTM-0208
+FT	MOD_RES
+TG	Threonine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Bacteria; taxId:90370 (Salmonella typhi)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Acetylation
+DR	RESID; AA0052
+DR	PSI-MOD; 00061
+ZZ
+ID	N-acetyltyrosine
+AC	PTM-0209
+FT	MOD_RES
+TG	Tyrosine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Eukaryota; taxId:8018 (Oncorhynchus keta)
+KW	Acetylation
+DR	RESID; AA0053
+DR	PSI-MOD; 00062
+ZZ
+ID	N-acetylvaline
+AC	PTM-0210
+FT	MOD_RES
+TG	Valine
+PA	Amino acid backbone
+PP	N-terminal
+CF	C2 H2 O1
+MM	42.010565
+MA	42.04
+LC	Intracellular localisation
+TR	Eukaryota; taxId:3055 (Chlamydomonas reinhardtii), taxId:33208 (Metazoa)
+TR	Bacteria; taxId:2 (Bacteria)
+KW	Acetylation
+DR	RESID; AA0054
+DR	PSI-MOD; 00063
+ZZ
+ID	Phosphoserine
+AC	PTM-0253
+FT	MOD_RES
+TG	Serine
+PA	Amino acid side chain
+PP	Anywhere
+CF	H1 O3 P1
+MM	79.966331
+MA	79.98
+LC	Intracellular localisation
+TR	Archaea; taxId:2157 (Archaea)
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Phosphoprotein
+DR	RESID; AA0037
+DR	PSI-MOD; 00046
+ZZ
+ID	Phosphothreonine
+AC	PTM-0254
+FT	MOD_RES
+TG	Threonine
+PA	Amino acid side chain
+PP	Anywhere
+CF	H1 O3 P1
+MM	79.966331
+MA	79.98
+LC	Intracellular localisation
+TR	Bacteria; taxId:2 (Bacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Phosphoprotein
+DR	RESID; AA0038
+DR	PSI-MOD; 00047
+ZZ
+ID	Phosphotyrosine
+AC	PTM-0255
+FT	MOD_RES
+TG	Tyrosine
+PA	Amino acid side chain
+PP	Anywhere
+CF	H1 O3 P1
+MM	79.966331
+MA	79.98
+LC	Intracellular localisation
+TR	Archaea; taxId:2287 (Sulfolobus solfataricus)
+TR	Bacteria; taxId:1224 (Proteobacteria)
+TR	Eukaryota; taxId:2759 (Eukaryota)
+KW	Phosphoprotein
+DR	RESID; AA0039
+DR	PSI-MOD; 00048
+ZZ
+ID	Sulfotyrosine
+AC	PTM-0286
+FT	MOD_RES
+TG	Tyrosine
+PA	Amino acid side chain
+PP	Anywhere
+CF	O3 S1
+MM	79.956815
+MA	80.06
+LC	Extracellular and lumenal localisation
+TR	Eukaryota; taxId:33208 (Metazoa), taxId:33090 (Viridiplantae)
+KW	Sulfation
+DR	RESID; AA0172
+DR	PSI-MOD; 00181
+ZZ

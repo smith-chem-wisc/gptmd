@@ -9,7 +9,7 @@
 
 Description: Controlled vocabulary of posttranslational modifications (PTM)
 Name:        ptmlist.txt
-Release:     2015_04 of 01-Apr-2015
+Release:     2016_06 of 08-Jun-2016
 
 ---------------------------------------------------------------------------
 
@@ -577,6 +577,21 @@ TR   Bacteria; taxId:1423 (Bacillus subtilis).
 KW   Thioether bond.
 DR   RESID; AA0340.
 DR   PSI-MOD; 00345.
+//
+ID   2-(S-cysteinyl)-methionine (Cys-Met)
+AC   PTM-0495
+FT   CROSSLNK
+TG   Cysteine-Methionine.
+PA   Amino acid side chain-Amino acid backbone.
+PP   Anywhere-Protein core.
+CF   H-2
+MM   -2.015650
+MA   -2.02
+LC   Extracellular localisation.
+TR   Bacteria; taxId:1386 (Bacillus).
+KW   Thioether bond.
+DR   RESID; AA0559.
+DR   PSI-MOD; 01857.
 //
 ID   2-iminomethyl-5-imidazolinone (Gln-Gly)
 AC   PTM-0013
@@ -1240,10 +1255,13 @@ TG   Glutamate.
 PA   Amino acid side chain.
 PP   C-terminal.
 CF   C5 H7 N1 O3
+MM   129.042593
 MA   129.12
 LC   Intracellular localisation.
 TR   Archaea; taxId:2267 (Thermoproteaceae).
+TR   Eukaryota; taxId:2759 (Eukaryota).
 KW   Isopeptide bond.
+DR   RESID; AA0612.
 DR   PSI-MOD; 01970.
 //
 ID   5-glutamyl N2-lysine
@@ -1270,6 +1288,7 @@ PA   Amino acid side chain.
 PP   Anywhere.
 LC   Intracellular localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
+KW   Isopeptide bond.
 DR   RESID; AA0201.
 DR   PSI-MOD; 00206.
 //
@@ -1281,6 +1300,7 @@ PA   Amino acid side chain.
 PP   Anywhere.
 LC   Intracellular localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
+KW   Isopeptide bond.
 DR   RESID; AA0202.
 DR   PSI-MOD; 00207.
 //
@@ -1607,6 +1627,20 @@ TR   Eukaryota; taxId:9606 (Homo sapiens).
 KW   ADP-ribosylation.
 DR   RESID; AA0231.
 DR   PSI-MOD; 00236.
+//
+ID   ADP-ribosyl aspartic acid
+AC   PTM-0497
+FT   MOD_RES
+TG   Aspartate.
+PA   Amino acid side chain.
+PP   Anywhere.
+CF   C15 H21 N5 O13 P2
+MM   541.061109
+MA   541.30
+LC   Intracellular localisation.
+TR   Bacteria; taxId:2 (Bacteria).
+TR   Eukaryota; taxId:7742 (Vertebrata).
+KW   ADP-ribosylation.
 //
 ID   ADP-ribosylcysteine
 AC   PTM-0055
@@ -2192,6 +2226,18 @@ MA   -18.02
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:9544 (Macaca mulatta).
 //
+ID   Cyclopeptide (Cys-Ile)
+AC   PTM-0496
+FT   CROSSLNK
+TG   Cysteine-Isoleucine.
+PA   Amino acid backbone-Amino acid backbone.
+PP   N-terminal-C-terminal.
+CF   H-2 O-1
+MM   -18.010565
+MA   -18.02
+LC   Extracellular localisation.
+TR   Bacteria; taxId:1386 (Bacillus).
+//
 ID   Cyclopeptide (Cys-Arg) (interchain with R-...)
 AC   PTM-0097
 FT   CROSSLNK
@@ -2757,7 +2803,7 @@ MM   438.094050
 MA   438.33
 LC   Intracellular localisation.
 TR   Bacteria; taxId:1224 (Proteobacteria).
-KW   Flavoprotein; FMN; Phosphoprotein.
+KW   FMN; Phosphoprotein.
 DR   RESID; AA0350.
 DR   PSI-MOD; 00355.
 //
@@ -2772,7 +2818,7 @@ MM   438.094050
 MA   438.33
 LC   Intracellular localisation.
 TR   Bacteria; taxId:2 (Bacteria).
-KW   Flavoprotein; FMN; Phosphoprotein.
+KW   FMN; Phosphoprotein.
 DR   RESID; AA0349.
 DR   PSI-MOD; 00354.
 //
@@ -2830,6 +2876,7 @@ PA   Amino acid side chain-Amino acid side chain.
 PP   C-terminal-Anywhere.
 LC   Intracellular localisation.
 TR   Bacteria; taxId:201174 (Actinobacteria).
+TR   Eukaryota; taxId:7742 (Vertebrata).
 KW   Isopeptide bond.
 DR   RESID; AA0124.
 DR   PSI-MOD; 01630.
@@ -2842,6 +2889,7 @@ PA   Amino acid side chain-Amino acid side chain.
 PP   Anywhere-C-terminal.
 LC   Intracellular localisation.
 TR   Bacteria; taxId:201174 (Actinobacteria).
+TR   Eukaryota; taxId:7742 (Vertebrata).
 KW   Isopeptide bond.
 DR   RESID; AA0124.
 DR   PSI-MOD; 01630.
@@ -3049,7 +3097,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0163.
 DR   PSI-MOD; 00172.
 //
@@ -3061,7 +3109,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0158.
 DR   PSI-MOD; 00167.
 //
@@ -3073,7 +3121,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0159.
 DR   PSI-MOD; 00168.
 //
@@ -3085,7 +3133,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   PSI-MOD; 00818.
 //
 ID   GPI-anchor amidated cysteine
@@ -3096,7 +3144,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0160.
 DR   PSI-MOD; 00169.
 //
@@ -3108,7 +3156,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0161.
 DR   PSI-MOD; 00170.
 //
@@ -3132,7 +3180,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:10090 (Mus musculus).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0164.
 DR   PSI-MOD; 00173.
 //
@@ -3144,7 +3192,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:746128 (Neosartorya fumigata).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0424.
 DR   PSI-MOD; 01172.
 //
@@ -3156,7 +3204,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:746128 (Neosartorya fumigata).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0425.
 DR   PSI-MOD; 01173.
 //
@@ -3180,7 +3228,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:44689 (Dictyostelium discoideum), taxId:746128 (Neosartorya fumigata).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0165.
 DR   PSI-MOD; 00174.
 //
@@ -3192,7 +3240,7 @@ PA   Amino acid backbone.
 PP   C-terminal.
 LC   Extracellular and lumenal localisation.
 TR   Eukaryota; taxId:44689 (Dictyostelium discoideum), taxId:746128 (Neosartorya fumigata).
-KW   GPI-anchor; Glycoprotein; Lipoprotein.
+KW   GPI-anchor.
 DR   RESID; AA0166.
 DR   PSI-MOD; 00175.
 //
@@ -5468,6 +5516,16 @@ KW   Phosphoprotein.
 DR   RESID; AA0039.
 DR   PSI-MOD; 00048.
 //
+ID   PolyADP-ribosyl aspartic acid
+AC   PTM-0494
+FT   MOD_RES
+TG   Aspartate.
+PA   Amino acid side chain.
+PP   Anywhere.
+LC   Intracellular localisation.
+TR   Eukaryota; taxId:7742 (Vertebrata).
+KW   ADP-ribosylation.
+//
 ID   PolyADP-ribosyl glutamic acid
 AC   PTM-0256
 FT   MOD_RES
@@ -6637,6 +6695,85 @@ LC   Intracellular localisation.
 TR   Eukaryota; taxId:2759 (Eukaryota).
 DR   RESID; AA0596.
 DR   PSI-MOD; 01950.
+//
+ID   O-palmitoleyl serine
+AC   PTM-0493
+FT   LIPID
+TG   Serine.
+PA   Amino acid side chain.
+PP   Anywhere.
+CF   C 16 H 28 O 1
+MM   236.214016
+MA   236.40
+TR   Eukaryota; taxId:2759 (Eukaryota).
+KW   Lipoprotein.
+DR   RESID; AA0455.
+DR   PSI-MOD; 01381.
+//
+ID   Trimethyllysine
+FT   MOD_RES
+TG   Lysine
+PA   Amino acid side chain
+PP   Anywhere
+CF   C3 H6
+MM   42.04695
+MA   42.08
+LC   Intracellular localisation
+TR   Bacteria; taxId:2 (Bacteria)
+TR   Eukaryota; taxId:2759 (Eukaryota)
+KW   Methylation
+//
+ID   Ammonia loss from Asn
+FT   MOD_RES
+TG   Asparagine
+PA   Amino acid side chain
+PP   Anywhere
+CF   H-3 N-1
+MM   -17.02655
+MA   -17.03
+LC   Intracellular localisation
+TR   Archaea; taxId:28890 (Euryarchaeota)
+TR   Bacteria; taxId:2 (Bacteria)
+TR   Eukaryota; taxId:2759 (Eukaryota)
+//
+ID   Ammonia loss from Gln
+FT   MOD_RES
+TG   Glutamine
+PA   Amino acid side chain
+PP   Anywhere
+CF   H-3 N-1
+MM   -17.02655
+MA   -17.03
+LC   Intracellular localisation
+TR   Archaea; taxId:28890 (Euryarchaeota)
+TR   Bacteria; taxId:2 (Bacteria)
+TR   Eukaryota; taxId:2759 (Eukaryota)
+//
+ID   Water loss from Glu
+FT   MOD_RES
+TG   Glutamate
+PA   Amino acid side chain
+PP   Anywhere
+CF   H-2 O-1
+MM   -18.010565
+MA   -18.02
+LC   Intracellular localisation
+TR   Archaea; taxId:28890 (Euryarchaeota)
+TR   Bacteria; taxId:2 (Bacteria)
+TR   Eukaryota; taxId:2759 (Eukaryota)
+//
+ID   Water loss from Asp
+FT   MOD_RES
+TG   Aspartate
+PA   Amino acid side chain
+PP   Anywhere
+CF   H-2 O-1
+MM   -18.010565
+MA   -18.02
+LC   Intracellular localisation
+TR   Archaea; taxId:28890 (Euryarchaeota)
+TR   Bacteria; taxId:2 (Bacteria)
+TR   Eukaryota; taxId:2759 (Eukaryota)
 //
 -----------------------------------------------------------------------
 Copyrighted by the UniProt Consortium, see http://www.uniprot.org/terms
