@@ -38,47 +38,33 @@ def condense_xml_entry(entry):
                 if name.tag != UP+'recommendedName': element.remove(name)
         else: continue
 
-# def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
-#     new_feature = et.Element(UP+'feature', type="modified residue", description=ptm_type, evidence="3")
-#     et.SubElement(et.SubElement(new_feature, UP+'location'), UP+'position', position=str(prot_position))
-#     for element in seq_elements:
-#         if element.text.replace('\n', '').replace('\r', '') == prot_seq:
-#             while True:
-#                 element = element.getprevious()
-#                 if element.tag != UP+'feature':
-#                     element.addnext(new_feature)
-#                     break
-#                 else:
-#                     this_position = int(element.find('.//'+UP+'position').get('position'))
-#                     if prot_position > this_position:
-#                         element.addnext(new_feature)
-#                         break
-#                     elif prot_position == this_position:
-#                         if element.get('description') <= ptm_type:
-#                             element.addnext(new_feature)
-#                         else:
-#                             element.addprevious(new_feature)
-#                         break
-#             break
 
 def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
     new_feature = et.Element(UP+'feature', type="modified residue", description=ptm_type, evidence="3")
     et.SubElement(et.SubElement(new_feature, UP+'location'), UP+'position', position=str(prot_position))
     for element in seq_elements:
         if element.text.replace('\n', '').replace('\r', '') == prot_seq:
-            element = element.getprevious()
-            this_position = int(element.find('.//' + UP + 'position').get('position'))
-            while prot_position < this_position:
+            while True:
                 element = element.getprevious()
-                this_position = int(element.find('.//' + UP + 'position').get('position'))
-            if prot_position == this_position:
-                if element.get('description') < ptm_type:
+                if element.tag != UP + 'feature':
                     element.addnext(new_feature)
-                elif element.get('description') > ptm_type:
-                    element.addnext(new_feature)
-            else: element.addnext(new_feature)
+                    break
+                else:
+                    this_position = int(element.find('.//'+UP+'position').get('position'))
+                    if prot_position > this_position:
+                        element.addnext(new_feature) #Alphabetize new entry.
+                        break
+                    elif prot_position == this_position:
+                        if element.get('description').find(ptm_type) != -1: #To prevent multiple feature entries of the same modification (i.e. "N-acetylvaline" and "partial N-acetylvaline")
+                            break
+                        elif element.get('description') < ptm_type: #Alphabetize new entry.
+                            element.addnext(new_feature)
+                            break
+                        elif element.get('description') > ptm_type: #Alphabetize new entry.
+                            element.addnext(new_feature)
+                            break
+                        break
             break
-
 def equals_within_tolerance(x, value, tolerance):
     return x > value - tolerance and x < value + tolerance
 
@@ -96,7 +82,6 @@ def keep_psm(line, ptm_masses):
 
     return False
 
-#On Tuesday, check over this function.  See if it really makes sense.  Especially the N-terminus business.  Maybe build a test case with an N-terminal acylation.
 def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls):
     line = line.split('\t')
     protein_description, base_peptide_sequence, start_residue = line[13], line[12], int(line[14])
@@ -106,51 +91,34 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
 
     global unusedAccessionList, usedAccessionList
 
-    # print "protein_description is ", line[13]
-    # print "base_peptide_sequence is ", line[12]
-    # print "start_residue is ", line[14]
-    # print "precursor_mass_error is ", precursor_mass_error
-    # print "accession is ", accession
-    # print "sequences is ", sequences
-
-    if accession in sequences:                              #Added the if clause to ensure that the "sequences" dictionary had an entry for the "accession" that we're looking for.
-        # print "Current accession is ", accession
+    if accession in sequences:  #Ensures that the "sequences" dictionary has an entry for the "accession."
         usedAccessionList.append(accession)
-        # print "start_residue is ", line[14]
         protein_sequence = sequences[accession]
+
+        #Special case of N-terminal acetylations
+        is_n_term_acetyl_site = protein_sequence[0] == 'M' and start_residue == 2 and equals_within_tolerance(
+            precursor_mass_error, 42.01,
+            MOD_MASS_TOLERANCE)  # The value originally was -89.029921, for some reason.  Doesn't acetylation add 42.01?
+        if is_n_term_acetyl_site:
+            second_aa = base_peptide_sequence[0]  # The one that's after Methionine.
+            if second_aa in nterm_acetyls:
+                enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[second_aa])
+
+        #All other modifications handled below.
         possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE)]
         if len(possible_precursor_mass_errors) > 0:
             for pme in possible_precursor_mass_errors:
                 for ptm_type in ptm_masses[pme]:
-                    # print "Current ptm_type is ", ptm_type
                     for mod_aa in ptm_types[ptm_type]:
-                        # print "Current mod_aa is ", mod_aa
                         position_in_peptide = base_peptide_sequence.find(mod_aa)
-                        # print "position_in_peptide is ", position_in_peptide
-                        # print "base_peptide_sequence.find(mod_aa) is ", base_peptide_sequence.find(mod_aa)
                         while position_in_peptide != -1:
-                            # print base_peptide_sequence + ' ' + str(position_in_peptide)
-                            position_in_protein = start_residue + position_in_peptide # 1-indexed
+                            position_in_protein = start_residue + position_in_peptide
                             position_is_mod_aa = base_peptide_sequence[position_in_peptide] == mod_aa
-                            is_n_term_acetyl_site = position_in_protein == 2 and protein_sequence[position_in_peptide] == mod_aa and ptm_type.find('N-acetyl') >= 0
-
-                            if is_n_term_acetyl_site: enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
-                            elif position_is_mod_aa:
-                                # if base_peptide_sequence[0] != "X":     #Not sure what this is about.  Do we every have "X"?
+                            if position_is_mod_aa:
                                 enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
-                                # else:
-                                #     enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
                             position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1) # Increment the start of the search
     else:
         unusedAccessionList.append(accession)
-
-    #Special case: N-terminal acetylation
-    is_n_term_acetyl_site = start_residue == 1 and equals_within_tolerance(precursor_mass_error, -89.029921, MOD_MASS_TOLERANCE)
-    if is_n_term_acetyl_site:
-        second_aa = base_peptide_sequence[1]
-        if second_aa in nterm_acetyls and protein_sequence[1] == second_aa:
-            enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[second_aa])
-            "entering modification " + nterm_acetyls[second_aa]
             
 def __main__():
     #Parse Command Line
@@ -161,6 +129,7 @@ def __main__():
     parser.add_option( '-s', '--psms', dest='psms', help='Peptide spectral matches tab-separated file from open search mode first-pass' )
     parser.add_option( '-o', '--output', dest='output', help='The output UniProt-XML' )
     (options, args) = parser.parse_args()
+    print "Command line parsed."
 
     ####OUTPUT: new xml database
     if options.output != None:
@@ -181,6 +150,7 @@ def __main__():
     except Exception, e:
         print >> sys.stderr, "failed: no ouput file specified with -o or --output tag. %s" % e
         exit(2)
+    print "Reference XML parsed."
 
     #Parse the ptmlist
     try:
@@ -250,7 +220,7 @@ def __main__():
         add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls)
 
     # print len(unusedAccessionList)
-    # print "usedAccessionList is: ", usedAccessionList
+    print "usedAccessionList is: ", usedAccessionList
 
     psms.close()
     # except Exception, e:
