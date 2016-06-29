@@ -10,6 +10,7 @@ import os.path
 import optparse
 from lxml import etree as et
 import utility
+import time
 
 HTML_NS = "http://uniprot.org/uniprot"
 XSI_NS = "http://www.w3.org/2001/XMLSchema-instance"
@@ -52,15 +53,15 @@ def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
                 else:
                     this_position = int(element.find('.//'+UP+'position').get('position'))
                     if prot_position > this_position:
-                        element.addnext(new_feature) #Alphabetize new entry.
+                        element.addnext(new_feature)    # Alphabetize new entry.
                         break
                     elif prot_position == this_position:
-                        if element.get('description').find(ptm_type) != -1: #To prevent multiple feature entries of the same modification (i.e. "N-acetylvaline" and "partial N-acetylvaline")
+                        if element.get('description').find(ptm_type) != -1:  # Prevents duplicate feature entries
                             break
-                        elif element.get('description') < ptm_type: #Alphabetize new entry.
+                        elif element.get('description') < ptm_type:  # Alphabetize new entry.
                             element.addnext(new_feature)
                             break
-                        elif element.get('description') > ptm_type: #Alphabetize new entry.
+                        elif element.get('description') > ptm_type:  # Alphabetize new entry.
                             element.addnext(new_feature)
                             break
                         break
@@ -68,7 +69,7 @@ def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
 def equals_within_tolerance(x, value, tolerance):
     return x > value - tolerance and x < value + tolerance
 
-def keep_psm(line, ptm_masses):
+def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks lines or other problems.
     line = line.split('\t')
     is_target = line[26] in ['TRUE', 'True', 'true']
     q_value = float(line[30])
@@ -76,7 +77,8 @@ def keep_psm(line, ptm_masses):
 
     if not is_target or q_value > MIN_FDR_FIRST_PASS: return False
 
-    delta_m_of_interest = False
+    if equals_within_tolerance(precursor_mass_error, -89.0299, MOD_MASS_TOLERANCE): return True #For Case 1 N-term
+
     for dm in ptm_masses:
         if equals_within_tolerance(precursor_mass_error, dm, MOD_MASS_TOLERANCE): return True
 
@@ -91,20 +93,39 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
 
     global unusedAccessionList, usedAccessionList
 
-    if accession in sequences:  #Ensures that the "sequences" dictionary has an entry for the "accession."
+    if accession in sequences:  # Ensures that the "sequences" dictionary has an entry for the "accession."
         usedAccessionList.append(accession)
         protein_sequence = sequences[accession]
 
-        #Special case of N-terminal acetylations
-        is_n_term_acetyl_site = protein_sequence[0] == 'M' and start_residue == 2 and equals_within_tolerance(
-            precursor_mass_error, 42.01,
+        # Case 1 of N-terminal acetylations
+        is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(
+            precursor_mass_error, -89.029921,
             MOD_MASS_TOLERANCE)  # The value originally was -89.029921, for some reason.  Doesn't acetylation add 42.01?
-        if is_n_term_acetyl_site:
+        if is_n_term_acetyl_site_type1:
+            second_aa = base_peptide_sequence[1]  # The one that's after methionine, which is cleaved.
+            if second_aa in nterm_acetyls:
+                enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[second_aa])
+
+        # Case 2 of N-terminal acetylations
+        is_n_term_acetyl_site_type2 = protein_sequence[0] == 'M' and start_residue == 2 and equals_within_tolerance(
+            precursor_mass_error, 42.01,
+            MOD_MASS_TOLERANCE)
+        if is_n_term_acetyl_site_type2:
             second_aa = base_peptide_sequence[0]  # The one that's after Methionine.
             if second_aa in nterm_acetyls:
                 enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[second_aa])
 
-        #All other modifications handled below.
+        # Case 3 of N-terminal acetylations; This gives rise to weird cases where two A.A.s can be N-terms.
+        is_n_term_acetyl_site_type3 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, 42.01, MOD_MASS_TOLERANCE)
+        if is_n_term_acetyl_site_type3:
+            first_aa = base_peptide_sequence[0]   # Should be Methionine.
+            second_aa = base_peptide_sequence[1]  # The one that's after Methionine.
+            if second_aa in nterm_acetyls:
+                enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[second_aa])
+            if first_aa in nterm_acetyls:
+                enter_modification(sequence_elements, protein_sequence, 1, nterm_acetyls[first_aa])
+
+        # All other modifications handled below.
         possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE)]
         if len(possible_precursor_mass_errors) > 0:
             for pme in possible_precursor_mass_errors:
@@ -119,19 +140,20 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
                             position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1) # Increment the start of the search
     else:
         unusedAccessionList.append(accession)
-            
+
 def __main__():
-    #Parse Command Line
+    global start, end
+    start = time.time()
+    # Parse Command Line
     parser = optparse.OptionParser()
-      #I/O
+    # I/O
     parser.add_option( '-x', '--reference_xml', dest='reference_xml', help='The reference UniProt-XML file.' )
     parser.add_option( '-t', '--ptm_database', dest='ptm_database', help='Database of UniProt PTMs (slightly modified)' )
     parser.add_option( '-s', '--psms', dest='psms', help='Peptide spectral matches tab-separated file from open search mode first-pass' )
     parser.add_option( '-o', '--output', dest='output', help='The output UniProt-XML' )
     (options, args) = parser.parse_args()
-    print "Command line parsed."
 
-    ####OUTPUT: new xml database
+    # OUTPUT: new xml database
     if options.output != None:
         outF = os.path.abspath(options.output)
         outF = open(outF, 'w')
@@ -139,7 +161,7 @@ def __main__():
         print >> sys.stderr, "failed: no ouput file specified with -o or --output tag"
         exit(2)
 
-    #Parse the reference XML
+    # Parse the reference XML
     try:
         reference_xml = os.path.abspath(options.reference_xml)
         refXml = open(reference_xml, 'r')
@@ -150,9 +172,8 @@ def __main__():
     except Exception, e:
         print >> sys.stderr, "failed: no ouput file specified with -o or --output tag. %s" % e
         exit(2)
-    print "Reference XML parsed."
 
-    #Parse the ptmlist
+    # Parse the ptmlist
     try:
         aa_dict = utility.get_aa_dict()
         ptm_types, ptm_masses = {}, {}
@@ -194,7 +215,7 @@ def __main__():
 
     #Preprocess psms
     for i, line in enumerate(psms):
-        if i % 10000 == 0: print "psms preprocessing line " + str(i) + " of " + str(linect)
+        if i % 100000 == 0: print "psms preprocessing line " + str(i) + " of " + str(linect)
         if line.startswith('Filename'): continue
         if keep_psm(line, ptm_masses):
             psms_list.append(line)
@@ -215,12 +236,12 @@ def __main__():
         accession = seq.getparent().find(UP+'accession').text
         sequences[accession] = seq.text.replace('\n','').replace('\r','')
     for i, line in enumerate(psms_list):
-        if i % 1000 == 0: print "psm " + str(i) + " of " + str(len(psms_list))
+        if i % 10000 == 0: print "psm " + str(i) + " of " + str(len(psms_list))
         if line.startswith('Filename'): continue
         add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls)
 
     # print len(unusedAccessionList)
-    print "usedAccessionList is: ", usedAccessionList
+    # print "usedAccessionList is: ", usedAccessionList
 
     psms.close()
     # except Exception, e:
@@ -230,5 +251,15 @@ def __main__():
     #Write the database
     db.write(outF, pretty_print=True)
     outF.close()
-    
+
+    end = time.time()
+    print end - start
+
+# total = 0
+# for i in range(10):
+#     if __name__ == "__main__" : __main__()
+#     total = total + end - start
+#     average = total/(i+1)
+# print average
+
 if __name__ == "__main__" : __main__()
