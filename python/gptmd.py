@@ -66,8 +66,11 @@ def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
                             break
                         break
             break
+
+
 def equals_within_tolerance(x, value, tolerance):
     return x > value - tolerance and x < value + tolerance
+
 
 def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks lines or other problems.
     line = line.split('\t')
@@ -84,6 +87,7 @@ def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks line
 
     return False
 
+
 def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls):
     line = line.split('\t')
     protein_description, base_peptide_sequence, start_residue = line[13], line[12], int(line[14])
@@ -98,32 +102,29 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
         protein_sequence = sequences[accession]
 
         # Case 1 of N-terminal acetylations
-        is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(
-            precursor_mass_error, -89.029921,
-            MOD_MASS_TOLERANCE)  # The value originally was -89.029921, for some reason.  Doesn't acetylation add 42.01?
+        # is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, -89.029921,MOD_MASS_TOLERANCE)
+        # if is_n_term_acetyl_site_type1:
+        #     base_peptide_sequence = base_peptide_sequence[1:]
+        #     start_residue = 2
+        #     precursor_mass_error = 131.040485 + precursor_mass_error  #Basically cleave the methionine and passes new entry onto acetylation.
+
+        # Case 1 of N-terminal acetylations. The above works as well, and I prefer it. 
+        is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, -89.029921,MOD_MASS_TOLERANCE)
         if is_n_term_acetyl_site_type1:
-            second_aa = base_peptide_sequence[1]  # The one that's after methionine, which is cleaved.
-            if second_aa in nterm_acetyls:
-                enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[second_aa])
+            mod_aa = base_peptide_sequence[1]  # This is the AA after M.
+            if mod_aa in nterm_acetyls:
+                enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[mod_aa])  # Acetylate the second AA (after M is cleaved).
+            position_in_peptide = base_peptide_sequence.find('K')
+            while position_in_peptide != -1:
+                enter_modification(sequence_elements, protein_sequence, position_in_peptide+1, "Acetyllysine")
+                position_in_peptide = base_peptide_sequence.find('K', position_in_peptide+1)
 
-        # Case 2 of N-terminal acetylations
-        is_n_term_acetyl_site_type2 = protein_sequence[0] == 'M' and start_residue == 2 and equals_within_tolerance(
-            precursor_mass_error, 42.01,
-            MOD_MASS_TOLERANCE)
+        # Case 2 and 3 of N-terminal acetylations
+        is_n_term_acetyl_site_type2 = protein_sequence[0] == 'M' and start_residue in [1,2] and equals_within_tolerance(precursor_mass_error, 42.01, MOD_MASS_TOLERANCE)
         if is_n_term_acetyl_site_type2:
-            second_aa = base_peptide_sequence[0]  # The one that's after Methionine.
-            if second_aa in nterm_acetyls:
-                enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[second_aa])
-
-        # Case 3 of N-terminal acetylations; This gives rise to weird cases where two A.A.s can be N-terms.
-        is_n_term_acetyl_site_type3 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, 42.01, MOD_MASS_TOLERANCE)
-        if is_n_term_acetyl_site_type3:
-            first_aa = base_peptide_sequence[0]   # Should be Methionine.
-            second_aa = base_peptide_sequence[1]  # The one that's after Methionine.
-            if second_aa in nterm_acetyls:
-                enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[second_aa])
-            if first_aa in nterm_acetyls:
-                enter_modification(sequence_elements, protein_sequence, 1, nterm_acetyls[first_aa])
+            mod_aa = base_peptide_sequence[0]   # Should be Methionine.
+            if mod_aa in nterm_acetyls:
+                enter_modification(sequence_elements, protein_sequence, start_residue, nterm_acetyls[mod_aa])
 
         # All other modifications handled below.
         possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE)]
@@ -134,12 +135,11 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
                         position_in_peptide = base_peptide_sequence.find(mod_aa)
                         while position_in_peptide != -1:
                             position_in_protein = start_residue + position_in_peptide
-                            position_is_mod_aa = base_peptide_sequence[position_in_peptide] == mod_aa
-                            if position_is_mod_aa:
-                                enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
+                            enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
                             position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1) # Increment the start of the search
     else:
         unusedAccessionList.append(accession)
+
 
 def __main__():
     global start, end
@@ -183,9 +183,9 @@ def __main__():
         ptm_database = open(ptm_database, 'r')
         for line in ptm_database:
             line = line.strip()
-            if line[:2] not in PTMLIST_HEADER_ABBREVS: continue # Ignore the header information
+            if line[:2] not in PTMLIST_HEADER_ABBREVS: continue  # Ignore the header information
             line = line.split('\t')
-            if len(line) == 1: line = ''.join(line).split('   ') #original ptmlist.txt has spaces
+            if len(line) == 1: line = ''.join(line).split('   ')  # Original ptmlist.txt has spaces
             if line[0] in ['//', 'ZZ']:
                 if id != None:
                     if id not in ptm_types: ptm_types[id] = [tg]
@@ -196,8 +196,8 @@ def __main__():
                 print "just added " + id + " and " + tg
                 id, tg, mm = None, None, None
             elif line[0] == 'ID': id = line[1]
-            elif line[0] == 'TG': tg = aa_dict[line[1].strip('.')] # original ptmlist ends lines with periods
-            elif line[0] == 'MM': mm = float("%.3f" % float(line[1]))  # round to 3rd place after decimal
+            elif line[0] == 'TG': tg = aa_dict[line[1].strip('.')]  # Original ptmlist ends lines with periods
+            elif line[0] == 'MM': mm = float("%.3f" % float(line[1]))  # Round to 3rd place after decimal
         ptm_database.close()
     except Exception, e:
         print >> sys.stderr, "Failed to open the UniProt PTM database. %s" % e
@@ -206,16 +206,16 @@ def __main__():
     print ptm_types
     print ptm_masses
 
-    #Process the first-pass psms
+    # Process the first-pass psms
     # try:
     psms = os.path.abspath(options.psms)
     linect = sum(1 for line in open(psms))
     psms = open(psms, 'r')
     psms_list = []
 
-    #Preprocess psms
+    # Preprocess psms
     for i, line in enumerate(psms):
-        if i % 100000 == 0: print "psms preprocessing line " + str(i) + " of " + str(linect)
+        if i % 10000 == 0: print "psms preprocessing line " + str(i) + " of " + str(linect)
         if line.startswith('Filename'): continue
         if keep_psm(line, ptm_masses):
             psms_list.append(line)
@@ -227,7 +227,7 @@ def __main__():
             # if accession == "Q9UG63" or accession == "P61981":
             #     print i, accession, precursor_mass_error
 
-    #Add open search results
+    # Add open search results
     nterm_acetyls = utility.get_nterm_dict()
     sequences = {}
     sequence_elements = root.findall('.//'+UP+'sequence')
@@ -236,19 +236,19 @@ def __main__():
         accession = seq.getparent().find(UP+'accession').text
         sequences[accession] = seq.text.replace('\n','').replace('\r','')
     for i, line in enumerate(psms_list):
-        if i % 10000 == 0: print "psm " + str(i) + " of " + str(len(psms_list))
+        if i % 1000 == 0: print "psm " + str(i) + " of " + str(len(psms_list))
         if line.startswith('Filename'): continue
         add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls)
 
-    # print len(unusedAccessionList)
-    # print "usedAccessionList is: ", usedAccessionList
+    print len(unusedAccessionList)
+    print "usedAccessionList is: ", usedAccessionList
 
     psms.close()
     # except Exception, e:
     #     print >> sys.stderr, "Failed to open the PSMS.tsv list. %s" % e
     #     exit(2)
 
-    #Write the database
+    # Write the database
     db.write(outF, pretty_print=True)
     outF.close()
 
@@ -256,7 +256,7 @@ def __main__():
     print end - start
 
 # total = 0
-# for i in range(10):
+# for i in range(100):
 #     if __name__ == "__main__" : __main__()
 #     total = total + end - start
 #     average = total/(i+1)
