@@ -1,7 +1,7 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-# Changed at 160705, 5:05 PM
+# Changed at 160706, 4:05 PM
 
 __author__ = "Anthony J. Cesnik"
 __date__ = "$Oct 29, 2015 1:25:17 PM$"
@@ -24,6 +24,7 @@ MIN_FDR_FIRST_PASS = 100
 
 usedAccessionList = []
 unusedAccessionList = []
+nonmatchingSequences = []
 
 
 def condense_xml_entry(entry):
@@ -87,7 +88,7 @@ def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks line
     return False
 
 def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls):
-    global unusedAccessionList, usedAccessionList
+    global unusedAccessionList, usedAccessionList, nonmatchingSequences
 
     line = line.split('\t')
     protein_description, base_peptide_sequence, start_residue = line[13], line[12], int(line[14])
@@ -101,13 +102,19 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
     if any((AA in set('BXZ')) for AA in sequences[accession]):  # Ensures that a bad amino acid isn't involved.
         unusedAccessionList.append(accession)
         # protein_sequence = sequences[accession]
+        # targetPeptidePosition = protein_sequence.find(base_peptide_sequence)
+        # print(sum(protein_sequence.count(AA, 0, targetPeptidePosition) for AA in set('BXZ')))
         # for AA in set('BXZ'):
-        #     print AA
         # len(protein_sequence.findall('X'))+len(protein_sequence.findall('B'))+len(protein_sequence.findall('Z'))
         return
 
     usedAccessionList.append(accession)
     protein_sequence = sequences[accession]
+
+    if start_residue != protein_sequence.find(base_peptide_sequence)+1:
+        print "Here's a mismatch!", accession, start_residue, protein_sequence.find(base_peptide_sequence)+1
+        nonmatchingSequences.append(accession)
+        return
 
     # Case 1 of N-terminal acetylations.
     is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, -89.029921,MOD_MASS_TOLERANCE)
@@ -115,11 +122,11 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
         mod_aa = base_peptide_sequence[1]  # This is the AA after M.
         if mod_aa in nterm_acetyls:
             enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[mod_aa])  # Acetylate the second AA (after M is cleaved).
-            print "N-term acetylation found for", accession
+            # print "N-term acetylation found for", accession
         position_in_peptide = base_peptide_sequence.find('K')
         while position_in_peptide != -1:
             enter_modification(sequence_elements, protein_sequence, position_in_peptide+1, "Acetyllysine")
-            print "Acetyllysine found for", accession, "at", position_in_peptide
+            # print "Acetyllysine found for", accession, "at", position_in_peptide
             position_in_peptide = base_peptide_sequence.find('K', position_in_peptide+1)
 
     # Case 2 and 3 of N-terminal acetylations
@@ -128,7 +135,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
         mod_aa = base_peptide_sequence[0]   # Should be Methionine.
         if mod_aa in nterm_acetyls:
             enter_modification(sequence_elements, protein_sequence, start_residue, nterm_acetyls[mod_aa])
-        print "N-term acetylation found for", accession
+        # print "N-term acetylation found for", accession
 
     # All other modifications handled below.
     possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE)]
@@ -140,7 +147,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
                     while position_in_peptide != -1:
                         position_in_protein = start_residue + position_in_peptide
                         enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
-                        print ptm_type, "found for", accession, "at", position_in_protein
+                        # print ptm_type, "found for", accession, "at", position_in_protein
                         position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1)  # Increment the start of the search
 
 
@@ -246,6 +253,8 @@ def __main__():
 
     print "Length of unusedAccessionList:", len(unusedAccessionList)
     print "Length of usedAccessionList:", len(usedAccessionList)
+    print "Length of nonmatchingSequences:", len(nonmatchingSequences)
+    print "nonmatchingSequences:", nonmatchingSequences
 
     # print "unusedAccessionList:", unusedAccessionList
     # print "usedAccessionList:", usedAccessionList
