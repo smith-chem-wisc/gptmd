@@ -1,7 +1,7 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-# Changed at 160706, 4:05 PM
+# Changed at 160711, 5:25 PM
 
 __author__ = "Anthony J. Cesnik"
 __date__ = "$Oct 29, 2015 1:25:17 PM$"
@@ -25,6 +25,7 @@ MIN_FDR_FIRST_PASS = 100
 usedAccessionList = []
 unusedAccessionList = []
 nonmatchingSequences = []
+badAAList = []
 
 
 def condense_xml_entry(entry):
@@ -40,7 +41,6 @@ def condense_xml_entry(entry):
             for name in element:
                 if name.tag != UP+'recommendedName': element.remove(name)
         else: continue
-
 
 def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
     new_feature = et.Element(UP+'feature', type="modified residue", description=ptm_type, evidence="3")
@@ -88,7 +88,7 @@ def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks line
     return False
 
 def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls):
-    global unusedAccessionList, usedAccessionList, nonmatchingSequences
+    global unusedAccessionList, usedAccessionList, nonmatchingSequences, badAAList
 
     line = line.split('\t')
     protein_description, base_peptide_sequence, start_residue = line[13], line[12], int(line[14])
@@ -101,11 +101,19 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
         return
     if any((AA in set('BXZ')) for AA in sequences[accession]):  # Ensures that a bad amino acid isn't involved.
         unusedAccessionList.append(accession)
+        badAAList.append(accession)
         # protein_sequence = sequences[accession]
-        # targetPeptidePosition = protein_sequence.find(base_peptide_sequence)
-        # print(sum(protein_sequence.count(AA, 0, targetPeptidePosition) for AA in set('BXZ')))
-        # for AA in set('BXZ'):
-        # len(protein_sequence.findall('X'))+len(protein_sequence.findall('B'))+len(protein_sequence.findall('Z'))
+        # possiblePeptidePositions = [i for i in range(len(protein_sequence)) if protein_sequence.startswith(base_peptide_sequence, i)]
+        # if len(possiblePeptidePositions) == 1:
+        #     targetPeptidePosition = protein_sequence.find(base_peptide_sequence)
+        #     start_residue = targetPeptidePosition + 1
+        # elif len(possiblePeptidePositions) > 1:
+        #     for possPos in possiblePeptidePositions:
+        #         totalBadAA = sum(protein_sequence.count(AA, 0, possPos) for AA in set('BXZ'))
+        #         newStart = start_residue - totalBadAA
+        #         if protein_sequence[possPos]
+        # else: return
+
         return
 
     usedAccessionList.append(accession)
@@ -173,16 +181,34 @@ def __main__():
         exit(2)
 
     # Parse the reference XML
-    try:
-        reference_xml = os.path.abspath(options.reference_xml)
-        refXml = open(reference_xml, 'r')
-        p = et.XMLParser(remove_blank_text=True)  # required for pretty additions
-        db = et.parse(refXml, p)
-        root = db.getroot()
-        for entry in root: condense_xml_entry(entry)
-    except Exception, e:
-        print >> sys.stderr, "failed: no ouput file specified with -o or --output tag. %s" % e
-        exit(2)
+    # try:
+    #     reference_xml = os.path.abspath(options.reference_xml)
+    #     refXml = open(reference_xml, 'r')
+    #     p = et.XMLParser(remove_blank_text=True)  # required for pretty additions
+    #     db = et.parse(refXml, p)
+    #     root = db.getroot()
+    #     for entry in root: condense_xml_entry(entry)
+    # except Exception, e:
+    #     print >> sys.stderr, "failed: no ouput file specified with -o or --output tag. %s" % e
+    #     exit(2)
+
+
+    #Iterative Parse the reference XML
+    reference_xml = os.path.abspath(options.reference_xml)
+    refXml = open(reference_xml, 'r')
+    xml_iter = et.iterparse(refXml, remove_blank_text=True)
+
+    # try:
+    root = et.Element(UP + 'uniprot', nsmap=NAMESPACE_MAP)
+    db = et.ElementTree(root)
+    for event, el in xml_iter:
+        if el.tag == UP + "entry":
+            condense_xml_entry(el)
+            root.append(el)
+
+    # except Exception, e:
+    #     print >> sys.stderr, "failed: error occurred while trying to iteratively parse the reference XML file. %s" %e
+    #     exit(2)
 
     # Parse the ptmlist
     try:
@@ -255,9 +281,10 @@ def __main__():
     print "Length of usedAccessionList:", len(usedAccessionList)
     print "Length of nonmatchingSequences:", len(nonmatchingSequences)
     print "nonmatchingSequences:", nonmatchingSequences
-
+    print "badAAList: ", badAAList
     # print "unusedAccessionList:", unusedAccessionList
     # print "usedAccessionList:", usedAccessionList
+
     psms.close()
     # except Exception, e:
     #     print >> sys.stderr, "Failed to open the PSMS.tsv list. %s" % e
