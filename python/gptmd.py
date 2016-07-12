@@ -102,39 +102,33 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
     if any((AA in set('BXZ')) for AA in sequences[accession]):  # Ensures that a bad amino acid isn't involved.
         unusedAccessionList.append(accession)
         badAAList.append(accession)
-        # protein_sequence = sequences[accession]
-        # possiblePeptidePositions = [i for i in range(len(protein_sequence)) if protein_sequence.startswith(base_peptide_sequence, i)]
-        # if len(possiblePeptidePositions) == 1:
-        #     targetPeptidePosition = protein_sequence.find(base_peptide_sequence)
-        #     start_residue = targetPeptidePosition + 1
-        # elif len(possiblePeptidePositions) > 1:
-        #     for possPos in possiblePeptidePositions:
-        #         totalBadAA = sum(protein_sequence.count(AA, 0, possPos) for AA in set('BXZ'))
-        #         newStart = start_residue - totalBadAA
-        #         if protein_sequence[possPos]
-        # else: return
-
-        return
+        protein_sequence = sequences[accession]
+        possiblePeptidePositions = [i for i in range(len(protein_sequence)) if protein_sequence.startswith(base_peptide_sequence, i)]
+        if len(possiblePeptidePositions) >= 1:
+            for possPos in possiblePeptidePositions:
+                totalBadAA = sum(protein_sequence.count(AA, 0, possPos) for AA in set('BXZ'))
+                newStart = start_residue + totalBadAA
+                if possPos == newStart-1:
+                    start_residue = newStart
+        else: return
 
     usedAccessionList.append(accession)
     protein_sequence = sequences[accession]
 
-    if start_residue != protein_sequence.find(base_peptide_sequence)+1:
-        print "Here's a mismatch!", accession, start_residue, protein_sequence.find(base_peptide_sequence)+1
-        nonmatchingSequences.append(accession)
-        return
+    # if start_residue != protein_sequence.find(base_peptide_sequence)+1:
+    #     print "Here's a mismatch!", accession, start_residue, protein_sequence.find(base_peptide_sequence)+1
+    #     nonmatchingSequences.append(accession)
+    #     return
 
     # Case 1 of N-terminal acetylations.
-    is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, -89.029921,MOD_MASS_TOLERANCE)
+    is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, -89.029921, MOD_MASS_TOLERANCE)
     if is_n_term_acetyl_site_type1:
         mod_aa = base_peptide_sequence[1]  # This is the AA after M.
         if mod_aa in nterm_acetyls:
             enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[mod_aa])  # Acetylate the second AA (after M is cleaved).
-            # print "N-term acetylation found for", accession
         position_in_peptide = base_peptide_sequence.find('K')
         while position_in_peptide != -1:
             enter_modification(sequence_elements, protein_sequence, position_in_peptide+1, "Acetyllysine")
-            # print "Acetyllysine found for", accession, "at", position_in_peptide
             position_in_peptide = base_peptide_sequence.find('K', position_in_peptide+1)
 
     # Case 2 and 3 of N-terminal acetylations
@@ -143,7 +137,6 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
         mod_aa = base_peptide_sequence[0]   # Should be Methionine.
         if mod_aa in nterm_acetyls:
             enter_modification(sequence_elements, protein_sequence, start_residue, nterm_acetyls[mod_aa])
-        # print "N-term acetylation found for", accession
 
     # All other modifications handled below.
     possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE)]
@@ -155,7 +148,6 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
                     while position_in_peptide != -1:
                         position_in_protein = start_residue + position_in_peptide
                         enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
-                        # print ptm_type, "found for", accession, "at", position_in_protein
                         position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1)  # Increment the start of the search
 
 
@@ -169,6 +161,7 @@ def __main__():
     parser.add_option( '-x', '--reference_xml', dest='reference_xml', help='The reference UniProt-XML file.' )
     parser.add_option( '-t', '--ptm_database', dest='ptm_database', help='Database of UniProt PTMs (slightly modified)' )
     parser.add_option( '-s', '--psms', dest='psms', help='Peptide spectral matches tab-separated file from open search mode first-pass' )
+    parser.add_option( '-m', '--threads', dest='threads', help='Number of threads to use for adding annotations.')
     parser.add_option( '-o', '--output', dest='output', help='The output UniProt-XML' )
     (options, args) = parser.parse_args()
 
@@ -207,7 +200,7 @@ def __main__():
             root.append(el)
 
     # except Exception, e:
-    #     print >> sys.stderr, "failed: error occurred while trying to iteratively parse the reference XML file. %s" %e
+    #     print >> sys.stderr, "Failed: error occurred while trying to parse the reference XML file. %s" %e
     #     exit(2)
 
     # Parse the ptmlist
@@ -273,7 +266,7 @@ def __main__():
         accession = seq.getparent().find(UP+'accession').text
         sequences[accession] = seq.text.replace('\n','').replace('\r','')
     for i, line in enumerate(psms_list):
-        if i % 100 == 0: print "psm " + str(i) + " of " + str(len(psms_list))
+        if i % 1000 == 0: print "psm " + str(i) + " of " + str(len(psms_list))
         if line.startswith('Filename'): continue
         add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls)
 
