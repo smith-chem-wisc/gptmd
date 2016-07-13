@@ -44,15 +44,15 @@ The following files must be present in the folder with the executable. If not, t
 
 ##Operating System Requirements and Usage
 
-###Perl
+###Windows Perl Version
 ####System
 ####Usage
 
-###Windows Version
+###Windows C# Version
 ####System
 #####
 
-###Python Version
+###Linux Python Version
 ####System
 - 8 GB of RAM is recommended
 - python v2.7.10 (64 bit)
