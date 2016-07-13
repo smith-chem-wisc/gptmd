@@ -13,7 +13,7 @@ wasteful while databases are often incomplete.  Thus, G-PTMD addresses the weakn
 of both methods to improve protein idenfication results.  
   
 The purpose of G-PTMD is to build a new proteome reference .xml database by annotating
-an existing reference database using a set of peptide spectral matches (PSMs).  
+an existing reference database using a set of peptide spectral matches (PSMs). 
 The PSMs are obtained by running a Morpheus search on a .raw or .mzml file of the 
 experimentally obtained mass spectrometry data.   The program identifies the peptide
 spectral matches that have a mass shift indicative of certain post-translational 
