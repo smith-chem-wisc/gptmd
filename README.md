@@ -1,6 +1,6 @@
 #GPTMD
 
-Software to augment a UniProt XML database with PTMs discovered using [Morpheus](github.com/cwenger/Morpheus)
+Software to augment a UniProt XML database with PTMs discovered using [Morpheus](http://github.com/cwenger/Morpheus)
 
 ##General Overview
 
