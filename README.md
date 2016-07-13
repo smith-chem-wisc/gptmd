@@ -37,6 +37,10 @@ associated with blindly adding variable modifications.
 
 The following files must be present in the folder with the executable. If not, they are automatically downloaded (to update a file to a newer version, delete it, and the application will download a new version). This is the only network usage by the application. 
 
+* uniprot.xml: A UniProt reference database in .xml format
+
+[http://www.uniprot.org]
+
 * ptmlist.txt: A PTM library
  
   [http://www.uniprot.org/docs/ptmlist.txt](http://www.uniprot.org/docs/ptmlist.txt) 
