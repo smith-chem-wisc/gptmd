@@ -56,6 +56,7 @@ trying an alternate package manager, such as Canopy, which can be found
 ####Usage
 
 Options:
+
 	-h, --help            show this help message and exit
 	
 	-x REFERENCE_XML, --reference_xml=REFERENCE_XML
@@ -76,8 +77,8 @@ Options:
 
 
 Example Command Line:
-Create a new uniprot-XML database from a reference XML:
-python gptmd.py -x ../uniprot.xml -t ../sub_ptmlist_regular.txt
+
+\WorkingDirectory>bpython gptmd.py -x ../uniprot.xml -t ../sub_ptmlist_regular.txt
 -s ../PSMs.tsv -o ../test_output.xml
 
 ####Notes
