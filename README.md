@@ -39,7 +39,7 @@ The following files must be present in the folder with the executable. If not, t
 
 * uniprot.xml: A UniProt reference database in .xml format
 
-[http://www.uniprot.org]
+  [http://www.uniprot.org](http://www.uniprot.org)
 
 * ptmlist.txt: A PTM library
  
