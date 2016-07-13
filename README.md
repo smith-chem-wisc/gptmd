@@ -1,8 +1,8 @@
-####GPTMD
+#GPTMD
 
 Software to augment a UniProt XML database with PTMs discovered using [Morpheus](github.com/cwenger/Morpheus)
 
-###General Overview
+##General Overview
 
 G-PTMD is a tool used to expand the scope of peptide identification to include 
 specific post-translational modifications.  Currently, identifying peptides with 
@@ -32,18 +32,17 @@ allows for variable post-translational modifications at targeted positions in th
 leading to better search results upon the second pass without incurring huge data costs 
 associated with blindly adding variable modifications.
 
-####Requirements
+##RequireZments
 
-##Perl Version
-#System
-#Usage
+####System
+####Usage
 
-##Windows Version
-#System
-#Usage
+###Windows Version
+####System
+#####
 
-##Python Version
-#System
+###Python Version
+####System
 - 8 GB of RAM is recommended
 - python v2.7.10 (64 bit)
 See https://www.python.org/downloads/ for installation instructions.
@@ -53,21 +52,27 @@ Or see http://lxml.de for installation instructions.
 - If you encounter errors installing the package, we recommend 
 trying an alternate package manager, such as Canopy, which can be found 
 [here](https://www.enthought.com/products/canopy/).
-#Usage
+
+####Usage
+
 Options:
-  -h, --help            show this help message and exit
-  -x REFERENCE_XML, --reference_xml=REFERENCE_XML
-                        The reference UniProt-XML file.  New PTM features are
-                        appended to this database to generate the output
-                        UniProt-XML protein database.
-  -t PTM_DATABASE, --ptm_database=PTM_DATABASE
-                        Slightly modified database of UniProt PTMs.  This file
-                        determines which types of PTMs are included.
-  -s PSMS, --psms=PSMS  Peptide spectral matches tab-separated.  This file is
-                        from first-pass open search and contains the mass
-                        shifts that correspond to PTMs.
-  -o OUTPUT, --output=OUTPUT
-                        Output file path.  Outputs a UniProt-XML file.
+	-h, --help            show this help message and exit
+	
+	-x REFERENCE_XML, --reference_xml=REFERENCE_XML
+						The reference UniProt-XML file.  New PTM features are
+						appended to this database to generate the output
+						UniProt-XML protein database.
+						
+	-t PTM_DATABASE, --ptm_database=PTM_DATABASE
+						Slightly modified database of UniProt PTMs.  This file
+						determines which types of PTMs are included.
+						
+	-s PSMS, --psms=PSMS  Peptide spectral matches tab-separated.  This file is
+						from first-pass open search and contains the mass
+						shifts that correspond to PTMs.
+						
+	-o OUTPUT, --output=OUTPUT
+						Output file path.  Outputs a UniProt-XML file.
 
 
 Example Command Line:
