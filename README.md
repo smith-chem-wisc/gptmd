@@ -32,7 +32,17 @@ allows for variable post-translational modifications at targeted positions in th
 leading to better search results upon the second pass without incurring huge data costs 
 associated with blindly adding variable modifications.
 
-##RequireZments
+
+##General Requirements
+
+The following files must be present in the folder with the executable. If not, they are automatically downloaded (to update a file to a newer version, delete it, and the application will download a new version). This is the only network usage by the application. 
+
+* ptmlist.txt: A PTM library
+ 
+  [http://www.uniprot.org/docs/ptmlist.txt](http://www.uniprot.org/docs/ptmlist.txt) 
+
+
+##Operating System Requirements and Usage
 
 ####System
 ####Usage
@@ -57,7 +67,7 @@ trying an alternate package manager, such as Canopy, which can be found
 
 Options:
 
-	-h, --help            show this help message and exit
+	-h, --help			show this help message and exit
 	
 	-x REFERENCE_XML, --reference_xml=REFERENCE_XML
 						The reference UniProt-XML file.  New PTM features are
@@ -85,7 +95,7 @@ Example Command Line:
 
 * 
 
-####Relevant Manuscripts
+###Relevant Manuscripts
 
 * [GPTMD manuscript in revision](http://pubs.acs.org/journal/jprobs)
 
@@ -93,15 +103,6 @@ Example Command Line:
 
 * [A Proteomics Search Algorithm Specifically Designed for High-Resolution Tandem Mass Spectra--J. Proteome Res., 2013, 12 (3), pp 1377–1386](http://pubs.acs.org/doi/abs/10.1021/pr301024c)
 
-
-
-## Requirements
-
-The following files must be present in the folder with the executable. If not, they are automatically downloaded (to update a file to a newer version, delete it, and the application will download a new version). This is the only network usage by the application. 
-
-* ptmlist.txt: A PTM library
- 
-  [http://www.uniprot.org/docs/ptmlist.txt](http://www.uniprot.org/docs/ptmlist.txt) 
 
 ## License
 
