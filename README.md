@@ -66,8 +66,8 @@ trying an alternate package manager, such as Canopy, which can be found
 
 ####Usage
 
-Options:
-
+	Options:
+	
 	-h, --help			show this help message and exit
 	
 	-x REFERENCE_XML, --reference_xml=REFERENCE_XML
@@ -86,15 +86,10 @@ Options:
 	-o OUTPUT, --output=OUTPUT
 						Output file path.  Outputs a UniProt-XML file.
 
+	Example Command Line:
 
-Example Command Line:
-
-\WorkingDirectory>bpython gptmd.py -x ../uniprot.xml -t ../sub_ptmlist_regular.txt
--s ../PSMs.tsv -o ../test_output.xml
-
-####Notes
-
-* 
+	\WorkingDirectory>bpython gptmd.py -x ../uniprot.xml -t ../sub_ptmlist_regular.txt
+	-s ../PSMs.tsv -o ../test_output.xml
 
 ###Relevant Manuscripts
 
