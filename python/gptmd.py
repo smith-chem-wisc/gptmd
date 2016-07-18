@@ -57,7 +57,7 @@ def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
                         element.addnext(new_feature)    # Alphabetize new entry.
                         break
                     elif prot_position == this_position:
-                        if element.get('description').find(ptm_type) != -1:  # Prevents duplicate feature entries
+                        if element.get('description') == ptm_type:  # Prevents duplicate feature entries
                             break
                         elif element.get('description') < ptm_type:  # Alphabetize new entry.
                             element.addnext(new_feature)
@@ -102,7 +102,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
         return
     protein_sequence = sequences[accession]
 
-    if any((AA in set('BXZ')) for AA in sequences[accession]):  # Ensures that a "bad" (ambiguous) amino acid isn't involved.
+    if any((AA in set('BXZ')) for AA in sequences[accession]):  # Extra caution with "bad" (ambiguous) residues.
         badAAList.append(accession)
         protein_sequence = sequences[accession]
         possiblePeptidePositions = [i for i in range(len(protein_sequence)) if protein_sequence.startswith(base_peptide_sequence, i)]
@@ -123,8 +123,8 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
     is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, -89.029921, MOD_MASS_TOLERANCE)
     if is_n_term_acetyl_site_type1:
         mod_aa = base_peptide_sequence[1]  # This is the AA after M.
-        if mod_aa in nterm_acetyls:
-            enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[mod_aa])  # Acetylate the second AA (after M is cleaved).
+        if mod_aa in nterm_acetyls:  # Acetylate the second AA (after M is cleaved).
+            enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[mod_aa])
         position_in_peptide = base_peptide_sequence.find('K')
         while position_in_peptide != -1:
             enter_modification(sequence_elements, protein_sequence, position_in_peptide+1, "Acetyllysine")
@@ -160,7 +160,6 @@ def __main__():
     parser.add_option( '-s', '--psms', dest='psms', help='Peptide spectral matches tab-separated.  This file is from first-pass open search and contains the mass shifts that correspond to PTMs.')
     # parser.add_option( '-m', '--threads', dest='threads', help='Number of threads to use for adding annotations.')
     parser.add_option( '-o', '--output', dest='output', help='Output file path.  Outputs a UniProt-XML file.')
-    # parser.add_option( '-b', '--ambiguous_residue', dest='ambiguous_residue', default=False ,  help='Manages indexing problems that occur when program is used with versions of Morpheus earlier than v261.  By default this feature will not be included.  To engage, after flag, type "True". ')
     (options, args) = parser.parse_args()
 
     # OUTPUT: new xml database
@@ -226,7 +225,7 @@ def __main__():
             elif line[0] == 'MM': mm = float("%.3f" % float(line[1]))  # Round to 3rd place after decimal
         ptm_database.close()
     except Exception, e:
-        print >> sys.stderr, "Failed: cannot open the UniProt PTM database. %s" % e
+        print >> sys.stderr, "Failed: could not open the UniProt PTM database. %s" % e
         exit(2)
 
     print ptm_types
@@ -262,7 +261,7 @@ def __main__():
 
         psms.close()
     except Exception, e:
-        print >> sys.stderr, "Failed: cannot open the PSMS.tsv list. %s" % e
+        print >> sys.stderr, "Failed: could not open the PSMS.tsv list. %s" % e
         exit(2)
 
     # print "Length of unusedAccessionList:", len(unusedAccessionList)
@@ -274,6 +273,5 @@ def __main__():
     # Write the database
     db.write(outF, pretty_print=True)
     outF.close()
-
-
+    print "Finished writing new database."
 if __name__ == "__main__" : __main__()
