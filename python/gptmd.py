@@ -1,7 +1,7 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-# Changed at 160711, 5:25 PM
+# Changed at 160719, 3:36 PM
 
 __author__ = "Anthony J. Cesnik"
 __date__ = "$Oct 29, 2015 1:25:17 PM$"
@@ -97,12 +97,16 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
     protein_description = protein_description.split('|')
     accession = protein_description[1]
 
-    if accession not in sequences:  # Ensures that the "sequences" dictionary has an entry for the "accession."
+    name_description = protein_description[2].split(' OS=')[0]  # Splits and desired product is on the left.
+    nameList = name_description.split(' ')  # Splits in effort to remove first tag part.
+    nameList.pop(0)  # Removes first tag.
+    fullName = " ".join(nameList)  # Joins the name back together with the space.
+
+    if (accession, fullName) not in sequences:  # Ensures that the "sequences" dictionary has an entry for the "accession."
         unusedAccessionList.append(accession)
         return
-    protein_sequence = sequences[accession]
 
-    if any((AA in set('BXZ')) for AA in sequences[accession]):  # Extra caution with "bad" (ambiguous) residues.
+    if any((AA in set('BXZ')) for AA in sequences[accession, fullName]):  # Extra caution with "bad" (ambiguous) residues.
         badAAList.append(accession)
         protein_sequence = sequences[accession]
         possiblePeptidePositions = [i for i in range(len(protein_sequence)) if protein_sequence.startswith(base_peptide_sequence, i)]
@@ -117,6 +121,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
             unusedAccessionList.append(accession)
             return
 
+    protein_sequence = sequences[accession, fullName]
     usedAccessionList.append(accession)
 
     # Case 1 of N-terminal acetylations.
@@ -232,37 +237,39 @@ def __main__():
     print ptm_masses
 
     # Process the first-pass psms
-    try:
-        psms = os.path.abspath(options.psms)
-        linect = sum(1 for line in open(psms))
-        psms = open(psms, 'r')
-        psms_list = []
+    # try:
+    psms = os.path.abspath(options.psms)
+    linect = sum(1 for line in open(psms))
+    psms = open(psms, 'r')
+    psms_list = []
 
-        # Preprocess psms
-        for i, line in enumerate(psms):
-            if i % 10000 == 0: print "Preprocessing psms line " + str(i) + " of " + str(linect)
-            if line.startswith('Filename'): continue
-            if keep_psm(line, ptm_masses):
-                psms_list.append(line)
+    # Preprocess psms
+    for i, line in enumerate(psms):
+        if i % 10000 == 0: print "Preprocessing psms line " + str(i) + " of " + str(linect)
+        if line.startswith('Filename'): continue
+        if keep_psm(line, ptm_masses):
+            psms_list.append(line)
 
-        # Add open search results
-        nterm_acetyls = utility.get_nterm_dict()
-        sequences = {}
-        sequence_elements = root.findall('.//'+UP+'sequence')
+    # Add open search results
+    nterm_acetyls = utility.get_nterm_dict()
+    sequences = {}
+    sequence_elements = root.findall('.//'+UP+'sequence')
 
-        for seq in sequence_elements:
-            accession = seq.getparent().find(UP+'accession').text
-            sequences[accession] = seq.text.replace('\n','').replace('\r','')
-        for i, line in enumerate(psms_list):
-            if i % 1000 == 0: print "Processing psm " + str(i) + " of " + str(len(psms_list))
-            if line.startswith('Filename'): continue
-            add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls)
+    for seq in sequence_elements:
+        accession = seq.getparent().find(UP+'accession').text
+        fullName = seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text
+        sequences[accession, fullName] = seq.text.replace('\n','').replace('\r','')
+
+    for i, line in enumerate(psms_list):
+        if i % 1000 == 0: print "Processing psm " + str(i) + " of " + str(len(psms_list))
+        if line.startswith('Filename'): continue
+        add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls)
 
 
-        psms.close()
-    except Exception, e:
-        print >> sys.stderr, "Failed: could not open the PSMS.tsv list. %s" % e
-        exit(2)
+    psms.close()
+    # except Exception, e:
+    #     print >> sys.stderr, "Failed: could not open the PSMS.tsv list. %s" % e
+    #     exit(2)
 
     # print "Length of unusedAccessionList:", len(unusedAccessionList)
     # print "Length of usedAccessionList:", len(usedAccessionList)
