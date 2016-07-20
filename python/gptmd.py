@@ -1,7 +1,7 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-# Changed at 160720, 10:44 AM
+# Changed at 160720, 5:25 PM
 
 __author__ = "Anthony J. Cesnik"
 __date__ = "$Oct 29, 2015 1:25:17 PM$"
@@ -24,6 +24,7 @@ MIN_FDR_FIRST_PASS = 100
 usedAccessionList = []
 unusedAccessionList = []
 badAAList = []
+count = 0
 
 
 def condense_xml_entry(entry):
@@ -42,6 +43,7 @@ def condense_xml_entry(entry):
 
 
 def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
+    global count
     new_feature = et.Element(UP+'feature', type="modified residue", description=ptm_type, evidence="3")
     et.SubElement(et.SubElement(new_feature, UP+'location'), UP+'position', position=str(prot_position))
     for element in seq_elements:
@@ -50,20 +52,24 @@ def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
                 element = element.getprevious()
                 if element.tag != UP + 'feature':
                     element.addnext(new_feature)
+                    count += 1
                     break
                 else:
                     this_position = int(element.find('.//'+UP+'position').get('position'))
                     if prot_position > this_position:
                         element.addnext(new_feature)    # Alphabetize new entry.
+                        count += 1
                         break
                     elif prot_position == this_position:
                         if element.get('description') == ptm_type:  # Prevents duplicate feature entries
                             break
                         elif element.get('description') < ptm_type:  # Alphabetize new entry.
                             element.addnext(new_feature)
+                            count += 1
                             break
                         elif element.get('description') > ptm_type:  # Alphabetize new entry.
                             element.addprevious(new_feature)
+                            count += 1
                             break
                         break
             break
@@ -110,16 +116,16 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
 
     if any((AA in set('BXZ')) for AA in sequences[accession, namePlusFullName]):  # Extra caution with "bad" (ambiguous) residues.
         badAAList.append(accession)
-        protein_sequence = sequences[accession]
+        protein_sequence = sequences[accession, namePlusFullName]
         possiblePeptidePositions = [i for i in range(len(protein_sequence)) if protein_sequence.startswith(base_peptide_sequence, i)]
         if len(possiblePeptidePositions) < 1:  # In case you cannot find the peptide in the protein.
-            print "Accession,", accession, ", removed because one peptide from PSMs list could not be found in this protein's sequence."
+            print "Accession,", accession, ", with name description, ", namePlusFullName, ", removed because one peptide from PSMs list could not be found in this protein's sequence."
             unusedAccessionList.append(accession)
             return
         if len(possiblePeptidePositions) == 1:
             start_residue = possiblePeptidePositions[0] + 1
         if len(possiblePeptidePositions) > 1:  # It becomes very messy to deal with multiple possible peptide possitions, so we'll remove them.
-            print "Accession,", accession, ", removed because ambiguity with the peptide position in this protein's sequence."
+            print "Accession,", accession, "with name description, ", namePlusFullName, ", removed because ambiguity with the peptide position in this protein's sequence."
             unusedAccessionList.append(accession)
             return
 
@@ -261,13 +267,16 @@ def __main__():
         nameFullNameList = []
         accession = seq.getparent().find(UP+'accession').text
         #  Avoid problem with retrieving text from None type.
-        if seq.getparent().find(UP+'name').text != None and seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text != None:
-            nameFullNameList.append(seq.getparent().find(UP+'name').text)
-            nameFullNameList.append(seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text)
+        if seq.getparent().find(UP+'protein').find(UP+'recommendedName') != None:
+            if seq.getparent().find(UP+'name').text != None and seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text != None:
+                nameFullNameList.append(seq.getparent().find(UP+'name').text)
+                nameFullNameList.append(seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text)
+            elif seq.getparent().find(UP+'name').text != None:
+                nameFullNameList.append(seq.getparent().find(UP+'name').text)
+            elif seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text != None:
+                nameFullNameList.append(seq.getparent().find(UP + 'protein').find(UP + 'recommendedName').find(UP + 'fullName').text)
         elif seq.getparent().find(UP+'name').text != None:
             nameFullNameList.append(seq.getparent().find(UP+'name').text)
-        elif seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text != None:
-            nameFullNameList.append(seq.getparent().find(UP + 'protein').find(UP + 'recommendedName').find(UP + 'fullName').text)
 
         if len(nameFullNameList) > 0:
             nameAndFullName = " ".join(nameFullNameList)
@@ -291,6 +300,7 @@ def __main__():
     # print "badAAList: ", badAAList
     # print "unusedAccessionList:", unusedAccessionList
     # print "usedAccessionList:", usedAccessionList
+    print "Number of new features added: ", count
 
     # Write the database
     db.write(outF, pretty_print=True)
