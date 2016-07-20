@@ -1,7 +1,7 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-# Changed at 160719, 3:36 PM
+# Changed at 160720, 10:44 AM
 
 __author__ = "Anthony J. Cesnik"
 __date__ = "$Oct 29, 2015 1:25:17 PM$"
@@ -97,16 +97,18 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
     protein_description = protein_description.split('|')
     accession = protein_description[1]
 
-    name_description = protein_description[2].split(' OS=')[0]  # Splits and desired product is on the left.
-    nameList = name_description.split(' ')  # Splits in effort to remove first tag part.
-    nameList.pop(0)  # Removes first tag.
-    fullName = " ".join(nameList)  # Joins the name back together with the space.
-
-    if (accession, fullName) not in sequences:  # Ensures that the "sequences" dictionary has an entry for the "accession."
+    nameList = protein_description[2].split(' ')
+    length = len(protein_description[2].split(' '))
+    if nameList[length-6] == "(Fragment)": rangeValue = 6
+    else: rangeValue = 5
+    for i in range(rangeValue):  # Strip name field of OS, GN, PE, SV, and (Fragment)
+        nameList.pop(length-i-1)
+    namePlusFullName = " ".join(nameList)
+    if (accession, namePlusFullName) not in sequences:  # Ensures that the "sequences" dictionary has an entry for the "accession."
         unusedAccessionList.append(accession)
         return
 
-    if any((AA in set('BXZ')) for AA in sequences[accession, fullName]):  # Extra caution with "bad" (ambiguous) residues.
+    if any((AA in set('BXZ')) for AA in sequences[accession, namePlusFullName]):  # Extra caution with "bad" (ambiguous) residues.
         badAAList.append(accession)
         protein_sequence = sequences[accession]
         possiblePeptidePositions = [i for i in range(len(protein_sequence)) if protein_sequence.startswith(base_peptide_sequence, i)]
@@ -121,7 +123,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
             unusedAccessionList.append(accession)
             return
 
-    protein_sequence = sequences[accession, fullName]
+    protein_sequence = sequences[accession, namePlusFullName]
     usedAccessionList.append(accession)
 
     # Case 1 of N-terminal acetylations.
@@ -255,10 +257,23 @@ def __main__():
     sequences = {}
     sequence_elements = root.findall('.//'+UP+'sequence')
 
-    for seq in sequence_elements:
+    for seq in sequence_elements:  # Extract the name and full name from the reference xml to tag a sequence.
+        nameFullNameList = []
         accession = seq.getparent().find(UP+'accession').text
-        fullName = seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text
-        sequences[accession, fullName] = seq.text.replace('\n','').replace('\r','')
+        #  Avoid problem with retrieving text from None type.
+        if seq.getparent().find(UP+'name').text != None and seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text != None:
+            nameFullNameList.append(seq.getparent().find(UP+'name').text)
+            nameFullNameList.append(seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text)
+        elif seq.getparent().find(UP+'name').text != None:
+            nameFullNameList.append(seq.getparent().find(UP+'name').text)
+        elif seq.getparent().find(UP+'protein').find(UP+'recommendedName').find(UP+'fullName').text != None:
+            nameFullNameList.append(seq.getparent().find(UP + 'protein').find(UP + 'recommendedName').find(UP + 'fullName').text)
+
+        if len(nameFullNameList) > 0:
+            nameAndFullName = " ".join(nameFullNameList)
+        else: nameAndFullName = ""
+
+        sequences[accession, nameAndFullName] = seq.text.replace('\n','').replace('\r','')
 
     for i, line in enumerate(psms_list):
         if i % 1000 == 0: print "Processing psm " + str(i) + " of " + str(len(psms_list))
