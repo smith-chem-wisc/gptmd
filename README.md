@@ -62,9 +62,8 @@ The following files must be present in the folder with the executable. If not, t
 - python v2.7.10 (64 bit)
 See https://www.python.org/downloads/ for installation instructions.
 This includes the "pip" package manager.
-- lxml python packageINstall using the command: pip install lxml
-Or see http://lxml.de for installation instructions.
-- If you encounter errors installing the package, we recommend 
+- This program uses lxml, a package for interpreting XML databases. lxml can be installed using the command: pip install lxml. See http://lxml.de for additional installation instructions.
+- If you encounter errors installing lxml, we recommend 
 trying an alternate package manager, such as Canopy, which can be found 
 [here](https://www.enthought.com/products/canopy/).
 
