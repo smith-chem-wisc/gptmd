@@ -109,27 +109,26 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
     else: rangeValue = 5
     for i in range(rangeValue):  # Strip name field of OS, GN, PE, SV, and (Fragment)
         nameList.pop(length-i-1)
-    namePlusFullName = " ".join(nameList)
-    if (accession, namePlusFullName) not in sequences:  # Ensures that the "sequences" dictionary has an entry for the "accession."
+    if accession not in sequences:  # Ensures that the "sequences" dictionary has an entry for the "accession."
         unusedAccessionList.append(accession)
         return
 
-    if any((AA in set('BXZ')) for AA in sequences[accession, namePlusFullName]):  # Extra caution with "bad" (ambiguous) residues.
+    if any((AA in set('BXZ')) for AA in sequences[accession]):  # Extra caution with "bad" (ambiguous) residues.
         badAAList.append(accession)
-        protein_sequence = sequences[accession, namePlusFullName]
+        protein_sequence = sequences[accession]
         possiblePeptidePositions = [i for i in range(len(protein_sequence)) if protein_sequence.startswith(base_peptide_sequence, i)]
         if len(possiblePeptidePositions) < 1:  # In case you cannot find the peptide in the protein.
-            print "Accession,", accession, ", with name description, ", namePlusFullName, ", removed because one peptide from PSMs list could not be found in this protein's sequence."
+            print "Accession,", accession, ", removed because one peptide from PSMs list could not be found in this protein's sequence."
             unusedAccessionList.append(accession)
             return
         if len(possiblePeptidePositions) == 1:
             start_residue = possiblePeptidePositions[0] + 1
         if len(possiblePeptidePositions) > 1:  # It becomes very messy to deal with multiple possible peptide possitions, so we'll remove them.
-            print "Accession,", accession, "with name description, ", namePlusFullName, ", removed because ambiguity with the peptide position in this protein's sequence."
+            print "Accession,", accession,", removed because ambiguity with the peptide position in this protein's sequence."
             unusedAccessionList.append(accession)
             return
 
-    protein_sequence = sequences[accession, namePlusFullName]
+    protein_sequence = sequences[accession]
     usedAccessionList.append(accession)
 
     # Case 1 of N-terminal acetylations.
@@ -278,11 +277,9 @@ def __main__():
         elif seq.getparent().find(UP+'name').text != None:
             nameFullNameList.append(seq.getparent().find(UP+'name').text)
 
-        if len(nameFullNameList) > 0:
-            nameAndFullName = " ".join(nameFullNameList)
-        else: nameAndFullName = ""
-
-        sequences[accession, nameAndFullName] = seq.text.replace('\n','').replace('\r','')
+        #print "adding "+seq.text.replace('\n','').replace('\r','')+" to sequences!!!"+ " with accession " + accession + " nameAndFullName = " + nameAndFullName 
+        sequences[accession] = seq.text.replace('\n','').replace('\r','')
+	
 
     for i, line in enumerate(psms_list):
         if i % 1000 == 0: print "Processing psm " + str(i) + " of " + str(len(psms_list))
