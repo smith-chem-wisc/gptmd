@@ -93,13 +93,13 @@ def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks line
     return False
 
 
-def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls):
+def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, nterm_acetyls):
     global unusedAccessionList, usedAccessionList, nonmatchingSequences, badAAList
 
     # Extract necessary information from the PSMs line.
     line = line.split('\t')
     protein_description, base_peptide_sequence, start_residue = line[13], line[12], int(line[14])
-    precursor_mass_error = float("%.3f" % float(line[18]))
+    precursor_mass_error = float(line[18])
     protein_description = protein_description.split('|')
     accession = protein_description[1]
 
@@ -154,12 +154,23 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_m
     if len(possible_precursor_mass_errors) > 0:
         for pme in possible_precursor_mass_errors:
             for ptm_type in ptm_masses[pme]:
-                for mod_aa in ptm_types[ptm_type]:
+                mod_aa = ptm_types[ptm_type]
+		mod_pp = pp_types[ptm_type]
+		if mod_pp == 'Anywhere':
                     position_in_peptide = base_peptide_sequence.find(mod_aa)
                     while position_in_peptide != -1:
                         position_in_protein = start_residue + position_in_peptide
                         enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
                         position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1)  # Increment the start of the search
+                elif mod_pp == 'Any N-terminal':
+		    if base_peptide_sequence[0] == mod_aa:
+                        position_in_protein = start_residue 
+                        enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
+		else:
+                    print >> sys.stderr, "Failed: unknown mod_pp " + str(mod_pp)
+                    exit(2)
+		
+			
 
 
 
@@ -182,18 +193,6 @@ def __main__():
         print >> sys.stderr, "Failed: no output file specified with -o or --output tag."
         exit(2)
 
-    # Parse the reference XML; Use if Iterative Parse doesn't work.
-    # try:
-    #     reference_xml = os.path.abspath(options.reference_xml)
-    #     refXml = open(reference_xml, 'r')
-    #     p = et.XMLParser(remove_blank_text=True)  # required for pretty additions
-    #     db = et.parse(refXml, p)
-    #     root = db.getroot()
-    #     for entry in root: condense_xml_entry(entry)
-    # except Exception, e:
-    #     print >> sys.stderr, "failed: no ouput file specified with -o or --output tag. %s" % e
-    #     exit(2)
-
 
     #Iterative Parse the reference XML
     try:
@@ -213,31 +212,30 @@ def __main__():
     # Parse the ptmlist
     try:
         aa_dict = utility.get_aa_dict()
-        ptm_types, ptm_masses = {}, {}
-        id, tg, mm = None, None, None
+        ptm_types, ptm_masses, pp_types = {}, {}, {}
+        id, tg, mm, pp = None, None, None, None
 
         ptm_database = os.path.abspath(options.ptm_database)
         ptm_database = open(ptm_database, 'r')
         for line in ptm_database:
             line = line.strip()
             if line[:2] not in PTMLIST_HEADER_ABBREVS: continue  # Ignore the header information
-            line = line.split('\t')
-            if len(line) == 1: line = ''.join(line).split('   ')  # Original ptmlist.txt has spaces
-            if line[0] in ['//', 'ZZ']:
-                if id != None:
-                    if id not in ptm_types: ptm_types[id] = [tg]
-                    else: ptm_types[id].append(tg)
-                if mm != None:
+            line = ''.join(line).split('   ')  # ptmlist.txt has three spaces
+            if line[0] == '//':
+                if id != None and mm != None:
+                    ptm_types[id] = tg
+                    pp_types[id] = pp
                     if mm not in ptm_masses: ptm_masses[mm] = [id]
                     else: ptm_masses[mm].append(id)
                 print "Just added " + id + " and " + tg
-                id, tg, mm = None, None, None
+                id, tg, mm, pp = None, None, None, None
             elif line[0] == 'ID': id = line[1]
             elif line[0] == 'TG': tg = aa_dict[line[1].strip('.')]  # Original ptmlist ends lines with periods
-            elif line[0] == 'MM': mm = float("%.3f" % float(line[1]))  # Round to 3rd place after decimal
+            elif line[0] == 'PP': pp = line[1].strip('.') # Original ptmlist ends lines with periods
+            elif line[0] == 'MM': mm = float(line[1])  
         ptm_database.close()
     except Exception, e:
-        print >> sys.stderr, "Failed: could not open the UniProt PTM database. %s" % e
+        print >> sys.stderr, "Failed: could not open the PTM database. %s" % e
         exit(2)
 
     print ptm_types
@@ -284,19 +282,11 @@ def __main__():
     for i, line in enumerate(psms_list):
         if i % 1000 == 0: print "Processing psm " + str(i) + " of " + str(len(psms_list))
         if line.startswith('Filename'): continue
-        add_open_search_results(line, sequence_elements, sequences, ptm_types, ptm_masses, nterm_acetyls)
+        add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, nterm_acetyls)
 
 
     psms.close()
-    # except Exception, e:
-    #     print >> sys.stderr, "Failed: could not open the PSMS.tsv list. %s" % e
-    #     exit(2)
 
-    # print "Length of unusedAccessionList:", len(unusedAccessionList)
-    # print "Length of usedAccessionList:", len(usedAccessionList)
-    # print "badAAList: ", badAAList
-    # print "unusedAccessionList:", unusedAccessionList
-    # print "usedAccessionList:", usedAccessionList
     print "Number of new features added: ", count
 
     # Write the database
