@@ -21,6 +21,7 @@ unusedAccessionList = []
 badAAList = []
 
 count = 0
+monoisotopic_errors = False
 
 def condense_xml_entry(entry):
     for element in entry:
@@ -60,8 +61,15 @@ def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
             break # Break out of outer for loop, the one that looks for correct sequence
 
 
-def equals_within_tolerance(x, value, tolerance):
-    return x > value - tolerance and x < value + tolerance
+def equals_within_tolerance(x, value, tolerance, considerMonoisotopic):
+    if x > value - tolerance and x < value + tolerance:
+        return True
+    if considerMonoisotopic:
+        if x > value + 1.003 - tolerance and x < value + 1.003 + tolerance:
+            return True
+        if x > value + 2.005 - tolerance and x < value + 2.005 + tolerance:
+            return True
+    return False
 
 
 def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks lines or other problems.
@@ -71,9 +79,8 @@ def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks line
     precursor_mass_error = float("%.3f" % float(line[18]))
 
     if not is_target or q_value > MIN_FDR_FIRST_PASS: return False
-    if equals_within_tolerance(precursor_mass_error, -89.0299, MOD_MASS_TOLERANCE): return True  # For Case 1 N-term
     for dm in ptm_masses:
-        if equals_within_tolerance(precursor_mass_error, dm, MOD_MASS_TOLERANCE): return True
+        if equals_within_tolerance(precursor_mass_error, dm, MOD_MASS_TOLERANCE, monoisotopic_errors): return True
 
     return False
 
@@ -117,7 +124,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
     usedAccessionList.append(accession)
 
     # All modifications handled below.
-    possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE)]
+    possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE, monoisotopic_errors)]
     if len(possible_precursor_mass_errors) > 0:
         for pme in possible_precursor_mass_errors:
             for ptm_type in ptm_masses[pme]:
@@ -146,6 +153,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
 
 
 def __main__():
+    global monoisotopic_errors 
     # Parse Command Line
     parser = optparse.OptionParser()
     # I/O
@@ -154,8 +162,10 @@ def __main__():
     parser.add_option( '-s', '--psms', dest='psms', help='Peptide spectral matches tab-separated.  This file is from first-pass open search and contains the mass shifts that correspond to PTMs.')
     # parser.add_option( '-m', '--threads', dest='threads', help='Number of threads to use for adding annotations.')
     parser.add_option( '-o', '--output', dest='output', help='Output file path.  Outputs a UniProt-XML file.')
+    parser.add_option( '-i', action="store_true", dest="monoisotopic_errors", default=False)
     (options, args) = parser.parse_args()
 
+    monoisotopic_errors = options.monoisotopic_errors
     # OUTPUT: new xml database
     if options.output != None:
         outF = os.path.abspath(options.output)
@@ -163,7 +173,6 @@ def __main__():
     else:
         print >> sys.stderr, "Failed: no output file specified with -o or --output tag."
         exit(2)
-
 
     #Iterative Parse the reference XML
     try:
