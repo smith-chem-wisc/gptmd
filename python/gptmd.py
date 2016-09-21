@@ -18,7 +18,7 @@ NAMESPACE_MAP = {None: HTML_NS, "xsi": XSI_NS}
 UP = '{'+HTML_NS+'}'
 
 MOD_MASS_TOLERANCE = 0.02
-PTMLIST_HEADER_ABBREVS = ['ID', 'AC', 'FT', 'TG', 'PA', 'PP', 'CF', 'MM', 'MA', 'LC', 'TR', 'KW', 'DR', '//', 'ZZ']
+PTMLIST_HEADER_ABBREVS = ['ID', 'AC', 'FT', 'TG', 'PA', 'PP', 'CF', 'MM', 'MA', 'LC', 'TR', 'KW', 'DR', '//']
 MIN_FDR_FIRST_PASS = 100
 
 usedAccessionList = []
@@ -131,25 +131,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
     protein_sequence = sequences[accession]
     usedAccessionList.append(accession)
 
-    # Case 1 of N-terminal acetylations.
-    is_n_term_acetyl_site_type1 = protein_sequence[0] == 'M' and start_residue == 1 and equals_within_tolerance(precursor_mass_error, -89.029921, MOD_MASS_TOLERANCE)
-    if is_n_term_acetyl_site_type1:
-        mod_aa = base_peptide_sequence[1]  # This is the AA after M.
-        if mod_aa in nterm_acetyls:  # Acetylate the second AA (after M is cleaved).
-            enter_modification(sequence_elements, protein_sequence, 2, nterm_acetyls[mod_aa])
-        position_in_peptide = base_peptide_sequence.find('K')
-        while position_in_peptide != -1:
-            enter_modification(sequence_elements, protein_sequence, position_in_peptide+1, "Acetyllysine")
-            position_in_peptide = base_peptide_sequence.find('K', position_in_peptide+1)
-
-    # Case 2 and 3 of N-terminal acetylations
-    is_n_term_acetyl_site_type2 = protein_sequence[0] == 'M' and start_residue in [1, 2] and equals_within_tolerance(precursor_mass_error, 42.01, MOD_MASS_TOLERANCE)
-    if is_n_term_acetyl_site_type2:
-        mod_aa = base_peptide_sequence[0]   # Should be Methionine.
-        if mod_aa in nterm_acetyls:
-            enter_modification(sequence_elements, protein_sequence, start_residue, nterm_acetyls[mod_aa])
-
-    # All other modifications handled below.
+    # All modifications handled below.
     possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE)]
     if len(possible_precursor_mass_errors) > 0:
         for pme in possible_precursor_mass_errors:
@@ -163,8 +145,12 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
                         enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
                         position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1)  # Increment the start of the search
                 elif mod_pp == 'Any N-terminal':
-		    if base_peptide_sequence[0] == mod_aa:
+		    if base_peptide_sequence[0] == mod_aa or mod_aa == "Any":
                         position_in_protein = start_residue 
+                        enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
+                elif mod_pp == 'Any C-terminal':
+		    if base_peptide_sequence[len(base_peptide_sequence)-1] == mod_aa or mod_aa == "Any":
+                        position_in_protein = start_residue + len(base_peptide_sequence)-1
                         enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
 		else:
                     print >> sys.stderr, "Failed: unknown mod_pp " + str(mod_pp)

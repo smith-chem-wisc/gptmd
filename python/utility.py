@@ -121,4 +121,5 @@ def get_aa_dict():
     aa_dict['Valine'] = 'V'
     aa_dict['Valine-Cysteine'] = 'C'
     aa_dict['Valine-Tyrosine'] = 'Y'
+    aa_dict['Any'] = 'Any'
     return aa_dict
