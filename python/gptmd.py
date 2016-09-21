@@ -1,9 +1,4 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
-# Changed at 160720, 5:25 PM
-
-__author__ = "Anthony J. Cesnik"
+__author__ = "Anthony J. Cesnik, Stefan Solntsev"
 __date__ = "$Oct 29, 2015 1:25:17 PM$"
 
 import sys
@@ -24,8 +19,8 @@ MIN_FDR_FIRST_PASS = 100
 usedAccessionList = []
 unusedAccessionList = []
 badAAList = []
-count = 0
 
+count = 0
 
 def condense_xml_entry(entry):
     for element in entry:
@@ -49,30 +44,20 @@ def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
     for element in seq_elements:
         if element.text.replace('\n', '').replace('\r', '') == prot_seq:
             while True:
-                element = element.getprevious()
-                if element.tag != UP + 'feature':
+                element = element.getprevious() #Iterate backwards from the sequence element 
+                if element.tag != UP + 'feature': # If suddenly found an element that is not a modified residue, add the new one!
                     element.addnext(new_feature)
-                    count += 1
+		    count += 1
                     break
                 else:
                     this_position = int(element.find('.//'+UP+'position').get('position'))
-                    if prot_position > this_position:
-                        element.addnext(new_feature)    # Alphabetize new entry.
-                        count += 1
+                    if prot_position > this_position: # If found one that is before the one to be added, add the new one!
+                        element.addnext(new_feature)
+		        count += 1
                         break
-                    elif prot_position == this_position:
-                        if element.get('description') == ptm_type:  # Prevents duplicate feature entries
-                            break
-                        elif element.get('description') < ptm_type:  # Alphabetize new entry.
-                            element.addnext(new_feature)
-                            count += 1
-                            break
-                        elif element.get('description') > ptm_type:  # Alphabetize new entry.
-                            element.addprevious(new_feature)
-                            count += 1
-                            break
+                    elif prot_position == this_position and  element.get('description') == ptm_type:  # Prevents duplicate feature entries
                         break
-            break
+            break # Break out of outer for loop, the one that looks for correct sequence
 
 
 def equals_within_tolerance(x, value, tolerance):
