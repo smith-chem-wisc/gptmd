@@ -12,8 +12,8 @@ XSI_NS = "http://www.w3.org/2001/XMLSchema-instance"
 NAMESPACE_MAP = {None: HTML_NS, "xsi": XSI_NS}
 UP = '{'+HTML_NS+'}'
 
-MOD_MASS_TOLERANCE = 0.0075
-PTMLIST_HEADER_ABBREVS = ['ID', 'AC', 'FT', 'TG', 'PA', 'PP', 'CF', 'MM', 'MA', 'LC', 'TR', 'KW', 'DR', '//']
+MOD_MASS_TOLERANCE = 0.0085
+PTMLIST_HEADER_ABBREVS = ['ID', 'AC', 'FT', 'TG', 'PA', 'PP', 'CF', 'MM', 'MA', 'M1', 'M2', 'LC', 'TR', 'KW', 'DR', '//']
 MIN_FDR_FIRST_PASS = 100
 
 usedAccessionList = []
@@ -72,7 +72,7 @@ def equals_within_tolerance(x, value, tolerance, considerMonoisotopic):
     return False
 
 
-def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks lines or other problems.
+def keep_psm(line, ptm_masses, combos):  # So far, there is no fail-safe for blanks lines or other problems.
     line = line.split('\t')
     is_target = line[26] in ['TRUE', 'True', 'true']
     q_value = float(line[30])
@@ -81,6 +81,8 @@ def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks line
     if not is_target or q_value > MIN_FDR_FIRST_PASS: return False
     for dm in ptm_masses:
         if equals_within_tolerance(precursor_mass_error, dm, MOD_MASS_TOLERANCE, monoisotopic_errors): return True
+    for key, value in combos.iteritems():
+        if equals_within_tolerance(precursor_mass_error, key, MOD_MASS_TOLERANCE, monoisotopic_errors): return True
 
     return False
 
@@ -127,6 +129,7 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
     possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE, monoisotopic_errors)]
     for key, value in combos.iteritems():
         if equals_within_tolerance(precursor_mass_error, key, MOD_MASS_TOLERANCE, monoisotopic_errors):
+            print str(key) + str(value)
             for summand in value:
                 possible_precursor_mass_errors.append(min(ptm_masses, key=lambda x:abs(x-summand)))
 
@@ -213,7 +216,6 @@ def __main__():
                 if ft == 'MOD_RES':
                     ptm_types[id] = tg
                     pp_types[id] = pp
-                    print str(mm) 
                     if mm not in ptm_masses: ptm_masses[mm] = [id]
                     else: ptm_masses[mm].append(id)
 		elif ft == 'COMBO':
@@ -224,8 +226,10 @@ def __main__():
             elif line[0] == 'TG': tg = aa_dict[line[1].strip('.')]  # Original ptmlist ends lines with periods
             elif line[0] == 'PP': pp = line[1].strip('.') # Original ptmlist ends lines with periods
             elif line[0] == 'MM': mm = float(line[1])  
-            elif line[0] == 'MA': ma = float(line[1])  
-            elif line[0] == 'MB': mb = float(line[1])  
+            elif line[0] == 'MA': 
+                ma = float(line[1])  
+            elif line[0] == 'MB': 
+                mb = float(line[1])  
             elif line[0] == 'FT': ft = line[1]
         ptm_database.close()
     except Exception, e:
@@ -247,7 +251,7 @@ def __main__():
     for i, line in enumerate(psms):
         if i % 10000 == 0: print "Preprocessing psms line " + str(i) + " of " + str(linect)
         if line.startswith('Filename'): continue
-        if keep_psm(line, ptm_masses):
+        if keep_psm(line, ptm_masses,combos):
             psms_list.append(line)
 
     # Add open search results
