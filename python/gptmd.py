@@ -12,7 +12,7 @@ XSI_NS = "http://www.w3.org/2001/XMLSchema-instance"
 NAMESPACE_MAP = {None: HTML_NS, "xsi": XSI_NS}
 UP = '{'+HTML_NS+'}'
 
-MOD_MASS_TOLERANCE = 0.02
+MOD_MASS_TOLERANCE = 0.0075
 PTMLIST_HEADER_ABBREVS = ['ID', 'AC', 'FT', 'TG', 'PA', 'PP', 'CF', 'MM', 'MA', 'LC', 'TR', 'KW', 'DR', '//']
 MIN_FDR_FIRST_PASS = 100
 
@@ -85,7 +85,7 @@ def keep_psm(line, ptm_masses):  # So far, there is no fail-safe for blanks line
     return False
 
 
-def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, nterm_acetyls):
+def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, combos):
     global unusedAccessionList, usedAccessionList, nonmatchingSequences, badAAList
 
     # Extract necessary information from the PSMs line.
@@ -125,28 +125,36 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
 
     # All modifications handled below.
     possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE, monoisotopic_errors)]
-    if len(possible_precursor_mass_errors) > 0:
-        for pme in possible_precursor_mass_errors:
-            for ptm_type in ptm_masses[pme]:
-                mod_aa = ptm_types[ptm_type]
-		mod_pp = pp_types[ptm_type]
-		if mod_pp == 'Anywhere':
-                    position_in_peptide = base_peptide_sequence.find(mod_aa)
-                    while position_in_peptide != -1:
-                        position_in_protein = start_residue + position_in_peptide
-                        enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
-                        position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1)  # Increment the start of the search
-                elif mod_pp == 'Any N-terminal':
-		    if base_peptide_sequence[0] == mod_aa or mod_aa == "Any":
-                        position_in_protein = start_residue 
-                        enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
-                elif mod_pp == 'Any C-terminal':
-		    if base_peptide_sequence[len(base_peptide_sequence)-1] == mod_aa or mod_aa == "Any":
-                        position_in_protein = start_residue + len(base_peptide_sequence)-1
-                        enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
-		else:
-                    print >> sys.stderr, "Failed: unknown mod_pp " + str(mod_pp)
-                    exit(2)
+    for key, value in combos.iteritems():
+        if equals_within_tolerance(precursor_mass_error, key, MOD_MASS_TOLERANCE, monoisotopic_errors):
+            for summand in value:
+                possible_precursor_mass_errors.append(min(ptm_masses, key=lambda x:abs(x-summand)))
+
+    for pme in possible_precursor_mass_errors:
+        for ptm_type in ptm_masses[pme]:
+            mod_aa = ptm_types[ptm_type]
+            mod_pp = pp_types[ptm_type]
+	    if mod_pp == 'Anywhere':
+                position_in_peptide = base_peptide_sequence.find(mod_aa)
+                while position_in_peptide != -1:
+                    position_in_protein = start_residue + position_in_peptide
+                    enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
+                    position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1)  # Increment the start of the search
+            elif mod_pp == 'Any N-terminal':
+	        if base_peptide_sequence[0] == mod_aa or mod_aa == "Any":
+                    position_in_protein = start_residue 
+                    enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
+            elif mod_pp == 'N-terminal 2nd Residue In Protein':
+	        if start_residue == 2 and (base_peptide_sequence[0] == mod_aa or mod_aa == "Any"):
+                    position_in_protein = start_residue 
+                    enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
+            elif mod_pp == 'Any C-terminal':
+	        if base_peptide_sequence[len(base_peptide_sequence)-1] == mod_aa or mod_aa == "Any":
+                    position_in_protein = start_residue + len(base_peptide_sequence)-1
+                    enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
+	    else:
+                print >> sys.stderr, "Failed: unknown mod_pp " + str(mod_pp)
+                exit(2)
 		
 			
 
@@ -192,27 +200,33 @@ def __main__():
     # Parse the ptmlist
     try:
         aa_dict = utility.get_aa_dict()
-        ptm_types, ptm_masses, pp_types = {}, {}, {}
-        id, tg, mm, pp = None, None, None, None
+        ptm_types, ptm_masses, pp_types, combos = {}, {}, {}, {}
+        id, tg, mm, pp, ma, mb, ft = None, None, None, None, None, None, None
 
         ptm_database = os.path.abspath(options.ptm_database)
         ptm_database = open(ptm_database, 'r')
         for line in ptm_database:
             line = line.strip()
             if line[:2] not in PTMLIST_HEADER_ABBREVS: continue  # Ignore the header information
-            line = ''.join(line).split('   ')  # ptmlist.txt has three spaces
+            line = ''.join(line).split('   ')
             if line[0] == '//':
-                if id != None and mm != None:
+                if ft == 'MOD_RES':
                     ptm_types[id] = tg
                     pp_types[id] = pp
+                    print str(mm) 
                     if mm not in ptm_masses: ptm_masses[mm] = [id]
                     else: ptm_masses[mm].append(id)
-                print "Just added " + id + " and " + tg
-                id, tg, mm, pp = None, None, None, None
+		elif ft == 'COMBO':
+		    combos[mm] = [ma, mb]
+                # print "Just added " + id 
+                id, tg, mm, pp, ma, mb, ft = None, None, None, None, None, None, None
             elif line[0] == 'ID': id = line[1]
             elif line[0] == 'TG': tg = aa_dict[line[1].strip('.')]  # Original ptmlist ends lines with periods
             elif line[0] == 'PP': pp = line[1].strip('.') # Original ptmlist ends lines with periods
             elif line[0] == 'MM': mm = float(line[1])  
+            elif line[0] == 'MA': ma = float(line[1])  
+            elif line[0] == 'MB': mb = float(line[1])  
+            elif line[0] == 'FT': ft = line[1]
         ptm_database.close()
     except Exception, e:
         print >> sys.stderr, "Failed: could not open the PTM database. %s" % e
@@ -220,6 +234,7 @@ def __main__():
 
     print ptm_types
     print ptm_masses
+    print combos
 
     # Process the first-pass psms
     # try:
@@ -236,7 +251,6 @@ def __main__():
             psms_list.append(line)
 
     # Add open search results
-    nterm_acetyls = utility.get_nterm_dict()
     sequences = {}
     sequence_elements = root.findall('.//'+UP+'sequence')
 
@@ -262,7 +276,7 @@ def __main__():
     for i, line in enumerate(psms_list):
         if i % 1000 == 0: print "Processing psm " + str(i) + " of " + str(len(psms_list))
         if line.startswith('Filename'): continue
-        add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, nterm_acetyls)
+        add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, combos)
 
 
     psms.close()

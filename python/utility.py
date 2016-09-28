@@ -1,19 +1,6 @@
 #main program: gptmd.py
 #this module: utility.py
 
-def get_nterm_dict():
-    nterm_acetyls = dict()
-    nterm_acetyls['A'] = 'N-acetylalanine'
-    nterm_acetyls['C'] = 'N-acetylcysteine'
-    nterm_acetyls['E'] = 'N-acetylglutamate'
-    nterm_acetyls['G'] = 'N-acetylglycine'
-    nterm_acetyls['M'] = 'N-acetylmethionine'
-    nterm_acetyls['S'] = 'N-acetylserine'
-    nterm_acetyls['T'] = 'N-acetylthreonine'
-    nterm_acetyls['V'] = 'N-acetylvaline'
-    nterm_acetyls['D'] = 'N-acetylaspartate'
-    return nterm_acetyls
-
 def get_aa_dict():
     aa_dict = dict()
     aa_dict['Alanine'] = 'A'
