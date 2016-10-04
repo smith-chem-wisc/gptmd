@@ -226,9 +226,9 @@ def __main__():
             elif line[0] == 'TG': tg = aa_dict[line[1].strip('.')]  # Original ptmlist ends lines with periods
             elif line[0] == 'PP': pp = line[1].strip('.') # Original ptmlist ends lines with periods
             elif line[0] == 'MM': mm = float(line[1])  
-            elif line[0] == 'MA': 
+            elif line[0] == 'M1': 
                 ma = float(line[1])  
-            elif line[0] == 'MB': 
+            elif line[0] == 'M2': 
                 mb = float(line[1])  
             elif line[0] == 'FT': ft = line[1]
         ptm_database.close()

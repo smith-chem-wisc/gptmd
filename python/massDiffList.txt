@@ -1,0 +1,582 @@
+ID   * Drop Aspartic Acid from N-terminus *
+FT   MOD_RES
+TG   Aspartate
+PP   Any N-terminal
+MM   -115.02694
+//
+ID   * Drop Asparagine from N-terminus *
+FT   MOD_RES
+TG   Asparagine
+PP   Any N-terminal
+MM   -114.04293
+//
+ID   * Leucine falls off of N-Terminus *
+FT   MOD_RES
+TG   Leucine
+PP   Any N-terminal
+MM   -113.08406
+//
+ID   * Isoleucine falls off of N-Terminus *
+FT   MOD_RES
+TG   Isoleucine 
+PP   Any N-terminal
+MM   -113.08406
+//
+ID   * Caramidomethylation + H2S fall off Anywhere *
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   -91.009185
+//
+ID   * Met loss + Acetylation at N-terminus *
+FT   MOD_RES
+TG   Methionine
+PP   Any N-terminal
+MM   -89.02992
+//
+ID   * Drop Serine from N-terminus *
+FT   MOD_RES
+TG   Serine
+PP   Any N-terminal
+MM   -87.03203
+//
+ID   * Alanine drops off *
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   -71.03711
+//
+ID   * Glutamine->Glycine substitution *
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -71.03711
+//
+ID   * Drop Glycine from N-terminus *
+FT   MOD_RES
+TG   Glycine
+PP   Any N-terminal
+MM   -57.021464
+//
+ID   * Loss of oxidized methionine side chain *
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -48.003371
+//
+ID   * P oxidation anywhere *
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   -30.010565
+//
+ID   * Pro->Ala substitution anywhere *
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   -26.01565
+//
+ID   * water loss from S anywhere *
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   -18.010565
+//
+ID   * water loss from T anywhere *
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   -18.010565
+//
+ID   * water loss from E at N-Term *
+FT   MOD_RES
+TG   Glutamate
+PP   Any N-terminal
+MM   -18.010565
+//
+ID   * Ammonia loss from peptide N-term Q *
+FT   MOD_RES
+TG   Glutamine
+PP   Any N-terminal
+MM   -17.02655
+//
+ID   * Ammonia loss from N anywhere *
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -17.02655
+//
+ID   * Ammonia loss from peptide N-term C *
+FT   MOD_RES
+TG   Cysteine
+PP   Any N-terminal
+MM   -17.02655
+//
+ID   * Combo Deamidation and Ammonia Loss *
+FT   COMBO
+MM   -16.042533
+M1   -17.026549
+M2   0.984016
+//
+ID   * Leu->Pro substitution *
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   -16.031300
+//
+ID   * Iso->Pro substitution *
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   -16.031300
+//
+ID   * reduction of Serine anywhere  *
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   -15.994915
+//
+ID   * Asn->Thr substitution anywhere *
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -12.995249
+//
+ID   * Val->Pro substitution anywhere *
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   -2.015650
+//
+ID   * Thr->Val substitution anywhere *
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   -1.979265
+//
+ID   * Lysine Oxidation to aminoadipic semialdehyde *
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -1.031634
+//
+ID   * Amidation of any C-terminus *
+FT   MOD_RES
+TG   Any
+PP   Any C-terminal
+MM   -0.984016
+//
+ID   * Deamidation of N anywhere *
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   0.984016
+//
+ID   * Deamidation of Q anywhere *
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   0.984016
+//
+ID   * Val->Thr substitution *
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   1.979265
+//
+ID   * Oxidation of W to Kynurenine anywhere *
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   3.994915
+//
+ID   * Carbon Adduct at Proline n terminus *
+FT   MOD_RES
+TG   Proline
+PP   Any N-terminal
+MM   12
+//
+ID   * Proline Oxidation to pyroglutamic acid *
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   13.979265
+//
+ID   * Tryptophan oxidation to oxolactone *
+FT   MOD_RES
+TG   Tryptophan 
+PP   Anywhere
+MM   13.979265
+//
+ID   * Methylation of H anywhere *
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   14.015650
+//
+ID   * Methylation of R anywhere *
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   14.015650
+//
+ID   * Methylation of K anywhere *
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   14.015650
+//
+ID   * Methylation of Q anywhere *
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   14.015650
+//
+ID   * Methylation of N anywhere *
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   14.015650
+//
+ID   * Leu->Gln substitution anywhere *
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   14.974514
+//
+ID   * Ile->Gln substitution anywhere *
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   14.974514
+//
+ID   * Val->Asn substitution anywhere *
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   14.974514
+//
+ID   * Oxidation of D anywhere *
+FT   MOD_RES
+TG   Aspartate
+PP   Anywhere
+MM   15.994915
+//
+ID   * Oxidation of N anywhere *
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   15.994915
+//
+ID   * Oxidation of K anywhere *
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   15.994915
+//
+ID   * Oxidation of R anywhere *
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   15.994915
+//
+ID   * Combo Deamidation and Oxygen *
+FT   COMBO
+MM   16.978931
+M1   15.994915
+M2   0.984016
+//
+ID   * Magnesium Adduct to D anywhere *
+FT   MOD_RES
+TG   Aspartate
+PP   Anywhere
+MM   21.969392
+//
+ID   * Magnesium Adduct to E anywhere *
+FT   MOD_RES
+TG   Glutamate
+PP   Anywhere
+MM   21.969392
+//
+ID   * Sodium Adduct to C-term *
+FT   MOD_RES
+TG   Any
+PP   Any C-terminal
+MM   21.981943
+//
+ID   * Sodium Adduct to D anywhere *
+FT   MOD_RES
+TG   Aspartate
+PP   Anywhere
+MM   21.981943
+//
+ID   * Sodium Adduct to E anywhere *
+FT   MOD_RES
+TG   Glutamate
+PP   Anywhere
+MM   21.981943
+//
+ID   * Combo Sodium and Deamidation *
+FT   COMBO
+MM   22.965959
+M1   0.984016
+M2   21.981943
+//
+ID   * Acetaldehyde of any N-Terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   26.01565
+//
+ID   * Formylation of any N-terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   27.994915
+//
+ID   * DiMethylation of K anywhere *
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   28.031300
+//
+ID   * Combo methyl and methyl *
+FT   COMBO
+MM   28.031300
+M1   14.015650
+M2   14.015650
+//
+ID   * DiMethylation of R anywhere *
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   28.031300
+//
+ID   * DiMethylation of N anywhere *
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   28.031300
+//
+ID   * Combo two oxidations *
+FT   COMBO
+MM   31.989829
+M1   15.994915
+M2   15.994915
+//
+ID   * Dioxidation of P anywhere *
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   31.989829
+//
+ID   * Dioxidation of R anywhere *
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   31.989829
+//
+ID   * Dioxidation of K anywhere *
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   31.989829
+//
+ID   * Dioxidation of M anywhere *
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   31.989829
+//
+ID   * Dioxidation of W anywhere *
+FT   MOD_RES
+TG   Triptophan
+PP   Anywhere
+MM   31.989829
+//
+ID   * Combo Deamidation and O2 *
+FT   COMBO
+MM   32.973845
+M1   31.989829
+M2   0.984016
+//
+ID   * Calcium Adduct to D anywhere *
+FT   MOD_RES
+TG   Aspartate
+PP   Anywhere
+MM   37.946941
+//
+ID   * Calcium Adduct to E anywhere *
+FT   MOD_RES
+TG   Glutamate
+PP   Anywhere
+MM   37.946941
+//
+ID   * Combo Sodium and Oxygen *
+FT   COMBO
+MM   37.976858
+M1   15.994915
+M2   21.981943
+//
+ID   * Acetylation of any N-terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   42.010565
+//
+ID   * TriMethylation of K anywhere *
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   42.046950
+//
+ID   * Combo methyl and dimethyl *
+FT   COMBO
+MM   42.046950
+M1   14.015650
+M2   28.031300
+//
+ID   * Carbamidomethylation of any N-terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   57.021464
+//
+ID   * Carboxymethyl at any N-Terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   58.005479
+//
+ID   * Zinc Adduct to D anywhere *
+FT   MOD_RES
+TG   Aspartate
+PP   Anywhere
+MM   61.913495
+//
+ID   * Zinc Adduct to E anywhere *
+FT   MOD_RES
+TG   Glutamate
+PP   Anywhere
+MM   61.913495
+//
+ID   * Sulfation of S anywhere *
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   79.956815
+//
+ID   * Sulfation of T anywhere *
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   79.956815
+//
+ID   * Sulfation of Y anywhere *
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   79.956815
+//
+ID   * Phosphorylation of S anywhere *
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   79.966331
+//
+ID   * Phosphorylation of T anywhere *
+FT   MOD_RES
+TG   Threonine 
+PP   Anywhere
+MM   79.966331
+//
+ID   * Phosphorylation of Y anywhere *
+FT   MOD_RES
+TG   Tyrosine 
+PP   Anywhere
+MM   79.966331
+//
+ID   * Combo Sodium and Phospho *
+FT   COMBO
+MM   101.948274
+M1   79.966331
+M2   21.981943
+//
+ID   * Add Lysine to any N-terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   128.09496
+//
+ID   * Arginine still attached at N-Terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   156.10111
+//
+ID   * Hexose of K anywhere  *
+FT   MOD_RES
+TG   Lysine 
+PP   Anywhere
+MM   162.052824
+//
+ID   * Hexose of N anywhere  *
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   162.052824
+//
+ID   * Hexose of S anywhere  *
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   162.052824
+//
+ID   * Hexose of T anywhere  *
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   162.052824
+//
+ID   * Hexose of any N-terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   162.052824
+//
+ID   * Add acetylated M at Protein N-terminus *
+FT   MOD_RES
+TG   Any
+PP   N-terminal 2nd Residue In Protein
+MM   173.051055 
+//
+ID   * Add Carboxymethylated M to N-terminus *
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   189.045969
+//
+ID   * Add KA to any Proline N-Terminus *
+FT   MOD_RES
+TG   Proline
+PP   Any N-terminal
+MM   199.13207
+//
+ID   * HexNAc of S anywhere *
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   203.079373
+//
+ID   * HexNAc of T anywhere *
+FT   MOD_RES
+TG   Threonine 
+PP   Anywhere
+MM   203.079373
+//
+ID   * HexNAc of N anywhere *
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   203.079373
+//
