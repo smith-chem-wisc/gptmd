@@ -1,5 +1,4 @@
 __author__ = "Anthony J. Cesnik, Stefan Solntsev"
-__date__ = "$Oct 29, 2015 1:25:17 PM$"
 
 import sys
 import os.path
@@ -13,7 +12,7 @@ NAMESPACE_MAP = {None: HTML_NS, "xsi": XSI_NS}
 UP = '{'+HTML_NS+'}'
 
 MOD_MASS_TOLERANCE = 0.0085
-PTMLIST_HEADER_ABBREVS = ['ID', 'AC', 'FT', 'TG', 'PA', 'PP', 'CF', 'MM', 'MA', 'M1', 'M2', 'LC', 'TR', 'KW', 'DR', '//']
+PTMLIST_HEADER_ABBREVS = ['ID', 'AC', 'FT', 'TG', 'PA', 'PP', 'PS', 'CF', 'MM', 'MA', 'M1', 'M2', 'LC', 'TR', 'KW', 'DR', '//']
 MIN_FDR_FIRST_PASS = 100
 
 usedAccessionList = []
@@ -27,7 +26,7 @@ def condense_xml_entry(entry):
     for element in entry:
         if element.tag not in [UP+'protein', UP+'accession', UP+'name', UP+'gene', UP+'organism', UP+'proteinExistence', UP+'depth', UP+'sequence', UP+'feature', UP+'dbReference']:
             entry.remove(element)
-        elif element.get('type') != 'modified residue' and element.tag == UP+'feature': entry.remove(element)
+        elif (element.get('type') != 'modified residue' and element.get('type') != 'peptide' and element.get('type') != 'signal peptide' and element.get('type') != 'propeptide' and element.get('type') != 'chain' )  and element.tag == UP+'feature': entry.remove(element)
         elif element.get('type') != 'Ensembl' and element.tag == UP+'dbReference': entry.remove(element)
         elif element.tag == UP+'organism':
             for field in element:
@@ -51,6 +50,8 @@ def enter_modification(seq_elements, prot_seq, prot_position, ptm_type):
 		    count += 1
                     break
                 else:
+                    if element.get("type")!="modified residue":
+                        continue 
                     this_position = int(element.find('.//'+UP+'position').get('position'))
                     if prot_position > this_position: # If found one that is before the one to be added, add the new one!
                         element.addnext(new_feature)
@@ -87,7 +88,7 @@ def keep_psm(line, ptm_masses, combos):  # So far, there is no fail-safe for bla
     return False
 
 
-def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, combos):
+def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, combos, pss):
     global unusedAccessionList, usedAccessionList, nonmatchingSequences, badAAList
 
     # Extract necessary information from the PSMs line.
@@ -99,10 +100,6 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
 
     nameList = protein_description[2].split(' ')
     length = len(protein_description[2].split(' '))
-    if nameList[length-6] == "(Fragment)": rangeValue = 6
-    else: rangeValue = 5
-    for i in range(rangeValue):  # Strip name field of OS, GN, PE, SV, and (Fragment)
-        nameList.pop(length-i-1)
     if accession not in sequences:  # Ensures that the "sequences" dictionary has an entry for the "accession."
         unusedAccessionList.append(accession)
         return
@@ -125,11 +122,13 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
     protein_sequence = sequences[accession]
     usedAccessionList.append(accession)
 
+    if precursor_mass_error > 99.06 and precursor_mass_error <99.07:
+        print precursor_mass_error
+
     # All modifications handled below.
     possible_precursor_mass_errors = [deltaM for deltaM in ptm_masses if equals_within_tolerance(precursor_mass_error, deltaM, MOD_MASS_TOLERANCE, monoisotopic_errors)]
     for key, value in combos.iteritems():
         if equals_within_tolerance(precursor_mass_error, key, MOD_MASS_TOLERANCE, monoisotopic_errors):
-            print str(key) + str(value)
             for summand in value:
                 possible_precursor_mass_errors.append(min(ptm_masses, key=lambda x:abs(x-summand)))
 
@@ -140,20 +139,21 @@ def add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_ty
 	    if mod_pp == 'Anywhere':
                 position_in_peptide = base_peptide_sequence.find(mod_aa)
                 while position_in_peptide != -1:
-                    position_in_protein = start_residue + position_in_peptide
+                    position_in_protein = start_residue + position_in_peptide + 1
                     enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
                     position_in_peptide = base_peptide_sequence.find(mod_aa, position_in_peptide + 1)  # Increment the start of the search
             elif mod_pp == 'Any N-terminal':
 	        if base_peptide_sequence[0] == mod_aa or mod_aa == "Any":
-                    position_in_protein = start_residue 
-                    enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
-            elif mod_pp == 'N-terminal 2nd Residue In Protein':
+                    position_in_protein = start_residue + 1 
+                    if ptm_type not in pss or (position_in_protein>1 and protein_sequence[position_in_protein-2] == pss[ptm_type]):  
+                        enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
+            elif mod_pp == 'Protein N-terminal':
 	        if start_residue == 2 and (base_peptide_sequence[0] == mod_aa or mod_aa == "Any"):
-                    position_in_protein = start_residue 
+                    position_in_protein = start_residue + 1 
                     enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
             elif mod_pp == 'Any C-terminal':
 	        if base_peptide_sequence[len(base_peptide_sequence)-1] == mod_aa or mod_aa == "Any":
-                    position_in_protein = start_residue + len(base_peptide_sequence)-1
+                    position_in_protein = start_residue + len(base_peptide_sequence)
                     enter_modification(sequence_elements, protein_sequence, position_in_protein, ptm_type)
 	    else:
                 print >> sys.stderr, "Failed: unknown mod_pp " + str(mod_pp)
@@ -203,8 +203,8 @@ def __main__():
     # Parse the ptmlist
     try:
         aa_dict = utility.get_aa_dict()
-        ptm_types, ptm_masses, pp_types, combos = {}, {}, {}, {}
-        id, tg, mm, pp, ma, mb, ft = None, None, None, None, None, None, None
+        ptm_types, ptm_masses, pp_types, combos, pss = {}, {}, {}, {}, {}
+        id, tg, mm, pp, ma, mb, ft, ps = None, None, None, None, None, None, None, None
 
         ptm_database = os.path.abspath(options.ptm_database)
         ptm_database = open(ptm_database, 'r')
@@ -218,10 +218,11 @@ def __main__():
                     pp_types[id] = pp
                     if mm not in ptm_masses: ptm_masses[mm] = [id]
                     else: ptm_masses[mm].append(id)
+                    if ps is not None: pss[id] = ps
 		elif ft == 'COMBO':
 		    combos[mm] = [ma, mb]
                 # print "Just added " + id 
-                id, tg, mm, pp, ma, mb, ft = None, None, None, None, None, None, None
+                id, tg, mm, pp, ma, mb, ft, ps = None, None, None, None, None, None, None, None
             elif line[0] == 'ID': id = line[1]
             elif line[0] == 'TG': tg = aa_dict[line[1].strip('.')]  # Original ptmlist ends lines with periods
             elif line[0] == 'PP': pp = line[1].strip('.') # Original ptmlist ends lines with periods
@@ -231,6 +232,7 @@ def __main__():
             elif line[0] == 'M2': 
                 mb = float(line[1])  
             elif line[0] == 'FT': ft = line[1]
+            elif line[0] == 'PS': ps = line[1] # Previous sequence
         ptm_database.close()
     except Exception, e:
         print >> sys.stderr, "Failed: could not open the PTM database. %s" % e
@@ -280,7 +282,7 @@ def __main__():
     for i, line in enumerate(psms_list):
         if i % 1000 == 0: print "Processing psm " + str(i) + " of " + str(len(psms_list))
         if line.startswith('Filename'): continue
-        add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, combos)
+        add_open_search_results(line, sequence_elements, sequences, ptm_types, pp_types, ptm_masses, combos, pss)
 
 
     psms.close()

@@ -1,0 +1,2160 @@
+ID   Tryptophan->Glycine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -129.05784923004
+//
+ID   Tryptophan->Alanine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -115.04219916558
+//
+ID   Tyrosine->Glycine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -106.04186481295
+//
+ID   Arginine->Glycine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -99.07964730336
+//
+ID   Tryptophan->Serine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -99.04728454601
+//
+ID   Tyrosine->Alanine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -92.02621474849
+//
+ID   Phenylalanine->Glycine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -90.04695019338
+//
+ID   Tryptophan->Proline
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -89.02654910112
+//
+ID   Tryptophan->Valine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -87.01089903666
+//
+ID   Arginine->Alanine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -85.0639972389
+//
+ID   Tryptophan->Threonine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -85.03163448155
+//
+ID   Tryptophan->Cysteine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -83.07012799118
+//
+ID   Histidine->Glycine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -80.03744813778
+//
+ID   Phenylalanine->Alanine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -76.03130012892
+//
+ID   Tyrosine->Serine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -76.03130012892
+//
+ID   Methionine->Glycine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -74.01902136778
+//
+ID   Tryptophan->Leucine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -72.9952489722
+//
+ID   Tryptophan->Asparagine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -72.03638550935
+//
+ID   Glutamic Acid->Glycine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -72.02112936806
+//
+ID   Lysine->Glycine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -71.0734992945
+//
+ID   Tryptophan->Aspartic Acid
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -71.05236992644
+//
+ID   Glutamine->Glycine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -71.03711378515
+//
+ID   Arginine->Serine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -69.06908261933
+//
+ID   Histidine->Alanine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -66.02179807332
+//
+ID   Tyrosine->Proline
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -66.01056468403
+//
+ID   Tyrosine->Valine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -63.99491461957
+//
+ID   Tyrosine->Threonine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -62.01565006446
+//
+ID   Tyrosine->Cysteine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -60.05414357409
+//
+ID   Phenylalanine->Serine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -60.03638550935
+//
+ID   Methionine->Alanine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -60.00337130332
+//
+ID   Arginine->Proline
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -59.04834717444
+//
+ID   Tryptophan->Glutamine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -58.02073544489
+//
+ID   Aspartic Acid->Glycine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -58.0054793036
+//
+ID   Glutamic Acid->Alanine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -58.0054793036
+//
+ID   Tryptophan->Lysine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -57.98434993554
+//
+ID   Lysine->Alanine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -57.05784923004
+//
+ID   Tryptophan->Glutamic Acid
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -57.03671986198
+//
+ID   Arginine->Valine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -57.03269710998
+//
+ID   Asparagine->Glycine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -57.02146372069
+//
+ID   Glutamine->Alanine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -57.02146372069
+//
+ID   Isoleucine->Glycine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   -56.06260025784
+//
+ID   Leucine->Glycine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   -56.06260025784
+//
+ID   Arginine->Threonine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -55.05343255487
+//
+ID   Tryptophan->Methionine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -55.03882786226
+//
+ID   Arginine->Cysteine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -53.0919260645
+//
+ID   Histidine->Serine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -50.02688345375
+//
+ID   Phenylalanine->Proline
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -50.01565006446
+//
+ID   Tyrosine->Leucine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -49.97926455511
+//
+ID   Tyrosine->Asparagine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -49.02040109226
+//
+ID   Tryptophan->Histidine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -49.02040109226
+//
+ID   Tyrosine->Aspartic Acid
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -48.03638550935
+//
+ID   Phenylalanine->Valine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -48
+//
+ID   Phenylalanine->Threonine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -46.02073544489
+//
+ID   Cysteine->Glycine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   -45.98772123886
+//
+ID   Phenylalanine->Cysteine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -44.05922895452
+//
+ID   Threonine->Glycine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   -44.02621474849
+//
+ID   Methionine->Serine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -44.00845668375
+//
+ID   Aspartic Acid->Alanine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -43.98982923914
+//
+ID   Arginine->Leucine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -43.01704704552
+//
+ID   Asparagine->Alanine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -43.00581365623
+//
+ID   Arginine->Asparagine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -42.05818358267
+//
+ID   Valine->Glycine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   -42.04695019338
+//
+ID   Isoleucine->Alanine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   -42.04695019338
+//
+ID   Leucine->Alanine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   -42.04695019338
+//
+ID   Glutamic Acid->Serine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -42.01056468403
+//
+ID   Arginine->Aspartic Acid
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -41.07416799976
+//
+ID   Lysine->Serine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -41.06293461047
+//
+ID   Glutamine->Serine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -41.02654910112
+//
+ID   Proline->Glycine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   -40.03130012892
+//
+ID   Histidine->Proline
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -40.00614800886
+//
+ID   Tryptophan->Phenylalanine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -39.01089903666
+//
+ID   Histidine->Valine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -37.9904979444
+//
+ID   Histidine->Threonine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -36.01123338929
+//
+ID   Tyrosine->Glutamine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -35.0047510278
+//
+ID   Tyrosine->Lysine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -34.96836551845
+//
+ID   Histidine->Cysteine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -34.04972689892
+//
+ID   Tyrosine->Glutamic Acid
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -34.02073544489
+//
+ID   Methionine->Proline
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -33.98772123886
+//
+ID   Phenylalanine->Leucine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -33.98434993554
+//
+ID   Phenylalanine->Asparagine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -33.02548647269
+//
+ID   Phenylalanine->Aspartic Acid
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -32.04147088978
+//
+ID   Tyrosine->Methionine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -32.02284344517
+//
+ID   Glutamic Acid->Proline
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -31.98982923914
+//
+ID   Cysteine->Alanine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   -31.9720711744
+//
+ID   Methionine->Valine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -31.9720711744
+//
+ID   Lysine->Proline
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -31.04219916558
+//
+ID   Glutamine->Proline
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -31.00581365623
+//
+ID   Serine->Glycine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   -30.01056468403
+//
+ID   Threonine->Alanine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   -30.01056468403
+//
+ID   Methionine->Threonine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -29.99280661929
+//
+ID   Tryptophan->Arginine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -29.97820192668
+//
+ID   Glutamic Acid->Valine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -29.97417917468
+//
+ID   Lysine->Valine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -29.02654910112
+//
+ID   Glutamine->Valine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -28.99016359177
+//
+ID   Arginine->Glutamine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -28.04253351821
+//
+ID   Valine->Alanine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   -28.03130012892
+//
+ID   Methionine->Cysteine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -28.03130012892
+//
+ID   Arginine->Lysine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -28.00614800886
+//
+ID   Aspartic Acid->Serine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -27.99491461957
+//
+ID   Glutamic Acid->Threonine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -27.99491461957
+//
+ID   Arginine->Glutamic Acid
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -27.0585179353
+//
+ID   Lysine->Threonine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -27.04728454601
+//
+ID   Asparagine->Serine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -27.01089903666
+//
+ID   Glutamine->Threonine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -27.01089903666
+//
+ID   Isoleucine->Serine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   -26.05203557381
+//
+ID   Leucine->Serine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   -26.05203557381
+//
+ID   Glutamic Acid->Cysteine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -26.0334081292
+//
+ID   Proline->Alanine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   -26.01565006446
+//
+ID   Tyrosine->Histidine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -26.00441667517
+//
+ID   Lysine->Cysteine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -25.08577805564
+//
+ID   Arginine->Methionine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -25.06062593558
+//
+ID   Glutamine->Cysteine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -25.04939254629
+//
+ID   Histidine->Leucine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -23.97484787994
+//
+ID   Histidine->Asparagine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -23.01598441709
+//
+ID   Tryptophan->Tyrosine
+FT   MOD_RES
+TG   Tryptophan
+PP   Anywhere
+MM   -23.01598441709
+//
+ID   Histidine->Aspartic Acid
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -22.03196883418
+//
+ID   Arginine->Histidine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -19.04219916558
+//
+ID   Phenylalanine->Glutamine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -19.00983640823
+//
+ID   Phenylalanine->Lysine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -18.97345089888
+//
+ID   Phenylalanine->Glutamic Acid
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -18.02582082532
+//
+ID   Aspartic Acid->Proline
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -17.97417917468
+//
+ID   Methionine->Leucine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -17.95642110994
+//
+ID   Methionine->Asparagine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -16.99755764709
+//
+ID   Asparagine->Proline
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -16.99016359177
+//
+ID   Isoleucine->Proline
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   -16.03130012892
+//
+ID   Leucine->Proline
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   -16.03130012892
+//
+ID   Phenylalanine->Methionine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -16.0279288256
+//
+ID   Methionine->Aspartic Acid
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -16.01354206418
+//
+ID   Serine->Alanine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   -15.99491461957
+//
+ID   Tyrosine->Phenylalanine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -15.99491461957
+//
+ID   Cysteine->Serine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   -15.97715655483
+//
+ID   Glutamic Acid->Leucine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -15.95852911022
+//
+ID   Aspartic Acid->Valine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -15.95852911022
+//
+ID   Lysine->Leucine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -15.01089903666
+//
+ID   Glutamic Acid->Asparagine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -14.99966564737
+//
+ID   Glutamine->Leucine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -14.97451352731
+//
+ID   Asparagine->Valine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -14.97451352731
+//
+ID   Lysine->Asparagine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -14.05203557381
+//
+ID   Alanine->Glycine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   -14.01565006446
+//
+ID   Threonine->Serine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   -14.01565006446
+//
+ID   Glutamine->Asparagine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -14.01565006446
+//
+ID   Glutamic Acid->Aspartic Acid
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -14.01565006446
+//
+ID   Isoleucine->Valine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   -14.01565006446
+//
+ID   Leucine->Valine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   -14.01565006446
+//
+ID   Aspartic Acid->Threonine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -13.97926455511
+//
+ID   Lysine->Aspartic Acid
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -13.0680199909
+//
+ID   Glutamine->Aspartic Acid
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   -13.03163448155
+//
+ID   Asparagine->Threonine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -12.9952489722
+//
+ID   Valine->Serine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   -12.03638550935
+//
+ID   Isoleucine->Threonine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   -12.03638550935
+//
+ID   Leucine->Threonine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   -12.03638550935
+//
+ID   Aspartic Acid->Cysteine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -12.01775806474
+//
+ID   Asparagine->Cysteine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -11.03374248183
+//
+ID   Isoleucine->Cysteine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   -10.07487901898
+//
+ID   Leucine->Cysteine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   -10.07487901898
+//
+ID   Proline->Serine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   -10.02073544489
+//
+ID   Phenylalanine->Histidine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   -10.0095020556
+//
+ID   Arginine->Phenylalanine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   -9.03269710997998
+//
+ID   Histidine->Glutamine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -9.00033435263001
+//
+ID   Histidine->Lysine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -8.96394884328001
+//
+ID   Histidine->Glutamic Acid
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -8.01631876971999
+//
+ID   Tyrosine->Arginine
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   -6.96221750959
+//
+ID   Histidine->Methionine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   -6.01842676999999
+//
+ID   Cysteine->Proline
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   -5.95642110994
+//
+ID   Threonine->Proline
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   -3.99491461957
+//
+ID   Cysteine->Valine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   -3.94077104547999
+//
+ID   Methionine->Glutamine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -2.98190758263002
+//
+ID   Methionine->Lysine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -2.94552207328002
+//
+ID   Valine->Proline
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   -2.01565006446
+//
+ID   Methionine->Glutamic Acid
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   -1.99789199972
+//
+ID   Threonine->Valine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   -1.97926455510999
+//
+ID   Cysteine->Threonine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   -1.96150649037
+//
+ID   Aspartic Acid->Leucine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -1.94287904576001
+//
+ID   Aspartic Acid->Asparagine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   -0.984015582910018
+//
+ID   Glutamic Acid->Glutamine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -0.984015582910018
+//
+ID   Asparagine->Leucine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   -0.95886346284999
+//
+ID   Glutamic Acid->Lysine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   -0.94763007356002
+//
+ID   Lysine->Glutamine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   -0.0363855093499978
+//
+ID   Glutamine->Lysine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   0.0363855093499978
+//
+ID   Lysine->Glutamic Acid
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   0.94763007356002
+//
+ID   Isoleucine->Asparagine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   0.95886346284999
+//
+ID   Leucine->Asparagine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   0.95886346284999
+//
+ID   Asparagine->Aspartic Acid
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   0.984015582910018
+//
+ID   Glutamine->Glutamic Acid
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   0.984015582910018
+//
+ID   Isoleucine->Aspartic Acid
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   1.94287904576001
+//
+ID   Leucine->Aspartic Acid
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   1.94287904576001
+//
+ID   Threonine->Cysteine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   1.96150649037
+//
+ID   Valine->Threonine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   1.97926455510999
+//
+ID   Glutamic Acid->Methionine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   1.99789199972
+//
+ID   Proline->Valine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   2.01565006446
+//
+ID   Lysine->Methionine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   2.94552207328002
+//
+ID   Glutamine->Methionine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   2.98190758263002
+//
+ID   Valine->Cysteine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   3.94077104547999
+//
+ID   Proline->Threonine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   3.99491461957
+//
+ID   Proline->Cysteine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   5.95642110994
+//
+ID   Methionine->Histidine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   6.01842676999999
+//
+ID   Arginine->Tyrosine
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   6.96221750959
+//
+ID   Glutamic Acid->Histidine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   8.01631876971999
+//
+ID   Lysine->Histidine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   8.96394884328001
+//
+ID   Glutamine->Histidine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   9.00033435263001
+//
+ID   Phenylalanine->Arginine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   9.03269710997998
+//
+ID   Histidine->Phenylalanine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   10.0095020556
+//
+ID   Serine->Proline
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   10.02073544489
+//
+ID   Cysteine->Leucine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   10.07487901898
+//
+ID   Cysteine->Asparagine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   11.03374248183
+//
+ID   Cysteine->Aspartic Acid
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   12.01775806474
+//
+ID   Threonine->Leucine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   12.03638550935
+//
+ID   Serine->Valine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   12.03638550935
+//
+ID   Threonine->Asparagine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   12.9952489722
+//
+ID   Aspartic Acid->Glutamine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   13.03163448155
+//
+ID   Aspartic Acid->Lysine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   13.0680199909
+//
+ID   Threonine->Aspartic Acid
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   13.97926455511
+//
+ID   Valine->Leucine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   14.01565006446
+//
+ID   Glycine->Alanine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   14.01565006446
+//
+ID   Serine->Threonine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   14.01565006446
+//
+ID   Asparagine->Glutamine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   14.01565006446
+//
+ID   Aspartic Acid->Glutamic Acid
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   14.01565006446
+//
+ID   Asparagine->Lysine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   14.05203557381
+//
+ID   Valine->Asparagine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   14.97451352731
+//
+ID   Isoleucine->Glutamine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   14.97451352731
+//
+ID   Leucine->Glutamine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   14.97451352731
+//
+ID   Asparagine->Glutamic Acid
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   14.99966564737
+//
+ID   Isoleucine->Lysine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   15.01089903666
+//
+ID   Leucine->Lysine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   15.01089903666
+//
+ID   Valine->Aspartic Acid
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   15.95852911022
+//
+ID   Isoleucine->Glutamic Acid
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   15.95852911022
+//
+ID   Leucine->Glutamic Acid
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   15.95852911022
+//
+ID   Serine->Cysteine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   15.97715655483
+//
+ID   Phenylalanine->Tyrosine
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   15.99491461957
+//
+ID   Alanine->Serine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   15.99491461957
+//
+ID   Aspartic Acid->Methionine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   16.01354206418
+//
+ID   Methionine->Phenylalanine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   16.0279288256
+//
+ID   Proline->Leucine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   16.03130012892
+//
+ID   Proline->Asparagine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   16.99016359177
+//
+ID   Asparagine->Methionine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   16.99755764709
+//
+ID   Isoleucine->Methionine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   17.95642110994
+//
+ID   Leucine->Methionine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   17.95642110994
+//
+ID   Proline->Aspartic Acid
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   17.97417917468
+//
+ID   Glutamic Acid->Phenylalanine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   18.02582082532
+//
+ID   Lysine->Phenylalanine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   18.97345089888
+//
+ID   Glutamine->Phenylalanine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   19.00983640823
+//
+ID   Histidine->Arginine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   19.04219916558
+//
+ID   Aspartic Acid->Histidine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   22.03196883418
+//
+ID   Asparagine->Histidine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   23.01598441709
+//
+ID   Tyrosine->Tryptophan
+FT   MOD_RES
+TG   Tyrosine
+PP   Anywhere
+MM   23.01598441709
+//
+ID   Isoleucine->Histidine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   23.97484787994
+//
+ID   Leucine->Histidine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   23.97484787994
+//
+ID   Cysteine->Glutamine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   25.04939254629
+//
+ID   Methionine->Arginine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   25.06062593558
+//
+ID   Cysteine->Lysine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   25.08577805564
+//
+ID   Histidine->Tyrosine
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   26.00441667517
+//
+ID   Alanine->Proline
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   26.01565006446
+//
+ID   Cysteine->Glutamic Acid
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   26.0334081292
+//
+ID   Serine->Leucine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   26.05203557381
+//
+ID   Serine->Asparagine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   27.01089903666
+//
+ID   Threonine->Glutamine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   27.01089903666
+//
+ID   Threonine->Lysine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   27.04728454601
+//
+ID   Glutamic Acid->Arginine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   27.0585179353
+//
+ID   Serine->Aspartic Acid
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   27.99491461957
+//
+ID   Threonine->Glutamic Acid
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   27.99491461957
+//
+ID   Lysine->Arginine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   28.00614800886
+//
+ID   Alanine->Valine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   28.03130012892
+//
+ID   Cysteine->Methionine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   28.03130012892
+//
+ID   Glutamine->Arginine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   28.04253351821
+//
+ID   Valine->Glutamine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   28.99016359177
+//
+ID   Valine->Lysine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   29.02654910112
+//
+ID   Valine->Glutamic Acid
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   29.97417917468
+//
+ID   Arginine->Tryptophan
+FT   MOD_RES
+TG   Arginine
+PP   Anywhere
+MM   29.97820192668
+//
+ID   Threonine->Methionine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   29.99280661929
+//
+ID   Glycine->Serine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   30.01056468403
+//
+ID   Alanine->Threonine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   30.01056468403
+//
+ID   Proline->Glutamine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   31.00581365623
+//
+ID   Proline->Lysine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   31.04219916558
+//
+ID   Alanine->Cysteine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   31.9720711744
+//
+ID   Valine->Methionine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   31.9720711744
+//
+ID   Proline->Glutamic Acid
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   31.98982923914
+//
+ID   Methionine->Tyrosine
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   32.02284344517
+//
+ID   Aspartic Acid->Phenylalanine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   32.04147088978
+//
+ID   Asparagine->Phenylalanine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   33.02548647269
+//
+ID   Isoleucine->Phenylalanine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   33.98434993554
+//
+ID   Leucine->Phenylalanine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   33.98434993554
+//
+ID   Proline->Methionine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   33.98772123886
+//
+ID   Glutamic Acid->Tyrosine
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   34.02073544489
+//
+ID   Cysteine->Histidine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   34.04972689892
+//
+ID   Lysine->Tyrosine
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   34.96836551845
+//
+ID   Glutamine->Tyrosine
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   35.0047510278
+//
+ID   Threonine->Histidine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   36.01123338929
+//
+ID   Valine->Histidine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   37.9904979444
+//
+ID   Phenylalanine->Tryptophan
+FT   MOD_RES
+TG   Phenylalanine
+PP   Anywhere
+MM   39.01089903666
+//
+ID   Proline->Histidine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   40.00614800886
+//
+ID   Glycine->Proline
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   40.03130012892
+//
+ID   Serine->Glutamine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   41.02654910112
+//
+ID   Serine->Lysine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   41.06293461047
+//
+ID   Aspartic Acid->Arginine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   41.07416799976
+//
+ID   Serine->Glutamic Acid
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   42.01056468403
+//
+ID   Alanine->Leucine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   42.04695019338
+//
+ID   Glycine->Valine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   42.04695019338
+//
+ID   Asparagine->Arginine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   42.05818358267
+//
+ID   Alanine->Asparagine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   43.00581365623
+//
+ID   Isoleucine->Arginine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   43.01704704552
+//
+ID   Leucine->Arginine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   43.01704704552
+//
+ID   Alanine->Aspartic Acid
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   43.98982923914
+//
+ID   Serine->Methionine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   44.00845668375
+//
+ID   Glycine->Threonine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   44.02621474849
+//
+ID   Cysteine->Phenylalanine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   44.05922895452
+//
+ID   Glycine->Cysteine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   45.98772123886
+//
+ID   Threonine->Phenylalanine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   46.02073544489
+//
+ID   Valine->Phenylalanine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   48
+//
+ID   Aspartic Acid->Tyrosine
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   48.03638550935
+//
+ID   Asparagine->Tyrosine
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   49.02040109226
+//
+ID   Histidine->Tryptophan
+FT   MOD_RES
+TG   Histidine
+PP   Anywhere
+MM   49.02040109226
+//
+ID   Isoleucine->Tyrosine
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   49.97926455511
+//
+ID   Leucine->Tyrosine
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   49.97926455511
+//
+ID   Proline->Phenylalanine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   50.01565006446
+//
+ID   Serine->Histidine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   50.02688345375
+//
+ID   Cysteine->Arginine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   53.0919260645
+//
+ID   Methionine->Tryptophan
+FT   MOD_RES
+TG   Methionine
+PP   Anywhere
+MM   55.03882786226
+//
+ID   Threonine->Arginine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   55.05343255487
+//
+ID   Glycine->Leucine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   56.06260025784
+//
+ID   Glycine->Asparagine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   57.02146372069
+//
+ID   Alanine->Glutamine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   57.02146372069
+//
+ID   Valine->Arginine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   57.03269710998
+//
+ID   Glutamic Acid->Tryptophan
+FT   MOD_RES
+TG   Glutamic Acid
+PP   Anywhere
+MM   57.03671986198
+//
+ID   Alanine->Lysine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   57.05784923004
+//
+ID   Lysine->Tryptophan
+FT   MOD_RES
+TG   Lysine
+PP   Anywhere
+MM   57.98434993554
+//
+ID   Glycine->Aspartic Acid
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   58.0054793036
+//
+ID   Alanine->Glutamic Acid
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   58.0054793036
+//
+ID   Glutamine->Tryptophan
+FT   MOD_RES
+TG   Glutamine
+PP   Anywhere
+MM   58.02073544489
+//
+ID   Proline->Arginine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   59.04834717444
+//
+ID   Alanine->Methionine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   60.00337130332
+//
+ID   Serine->Phenylalanine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   60.03638550935
+//
+ID   Cysteine->Tyrosine
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   60.05414357409
+//
+ID   Threonine->Tyrosine
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   62.01565006446
+//
+ID   Valine->Tyrosine
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   63.99491461957
+//
+ID   Proline->Tyrosine
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   66.01056468403
+//
+ID   Alanine->Histidine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   66.02179807332
+//
+ID   Serine->Arginine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   69.06908261933
+//
+ID   Glycine->Glutamine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   71.03711378515
+//
+ID   Aspartic Acid->Tryptophan
+FT   MOD_RES
+TG   Aspartic Acid
+PP   Anywhere
+MM   71.05236992644
+//
+ID   Glycine->Lysine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   71.0734992945
+//
+ID   Glycine->Glutamic Acid
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   72.02112936806
+//
+ID   Asparagine->Tryptophan
+FT   MOD_RES
+TG   Asparagine
+PP   Anywhere
+MM   72.03638550935
+//
+ID   Isoleucine->Tryptophan
+FT   MOD_RES
+TG   Isoleucine
+PP   Anywhere
+MM   72.9952489722
+//
+ID   Leucine->Tryptophan
+FT   MOD_RES
+TG   Leucine
+PP   Anywhere
+MM   72.9952489722
+//
+ID   Glycine->Methionine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   74.01902136778
+//
+ID   Serine->Tyrosine
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   76.03130012892
+//
+ID   Alanine->Phenylalanine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   76.03130012892
+//
+ID   Glycine->Histidine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   80.03744813778
+//
+ID   Cysteine->Tryptophan
+FT   MOD_RES
+TG   Cysteine
+PP   Anywhere
+MM   83.07012799118
+//
+ID   Threonine->Tryptophan
+FT   MOD_RES
+TG   Threonine
+PP   Anywhere
+MM   85.03163448155
+//
+ID   Alanine->Arginine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   85.0639972389
+//
+ID   Valine->Tryptophan
+FT   MOD_RES
+TG   Valine
+PP   Anywhere
+MM   87.01089903666
+//
+ID   Proline->Tryptophan
+FT   MOD_RES
+TG   Proline
+PP   Anywhere
+MM   89.02654910112
+//
+ID   Glycine->Phenylalanine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   90.04695019338
+//
+ID   Alanine->Tyrosine
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   92.02621474849
+//
+ID   Serine->Tryptophan
+FT   MOD_RES
+TG   Serine
+PP   Anywhere
+MM   99.04728454601
+//
+ID   Glycine->Arginine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   99.07964730336
+//
+ID   Glycine->Tyrosine
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   106.04186481295
+//
+ID   Alanine->Tryptophan
+FT   MOD_RES
+TG   Alanine
+PP   Anywhere
+MM   115.04219916558
+//
+ID   Glycine->Tryptophan
+FT   MOD_RES
+TG   Glycine
+PP   Anywhere
+MM   129.05784923004
+//
