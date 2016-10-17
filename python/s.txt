@@ -94,7 +94,7 @@ TG   Methionine
 PP   Anywhere
 MM   -74.01902136778
 //
-ID   Tryptophan->Leucine
+ID   Tryptophan->Xle
 FT   MOD_RES
 TG   Tryptophan
 PP   Anywhere
@@ -280,7 +280,7 @@ TG   Phenylalanine
 PP   Anywhere
 MM   -50.01565006446
 //
-ID   Tyrosine->Leucine
+ID   Tyrosine->Xle
 FT   MOD_RES
 TG   Tyrosine
 PP   Anywhere
@@ -346,7 +346,7 @@ TG   Aspartic Acid
 PP   Anywhere
 MM   -43.98982923914
 //
-ID   Arginine->Leucine
+ID   Arginine->Xle
 FT   MOD_RES
 TG   Arginine
 PP   Anywhere
@@ -466,7 +466,7 @@ TG   Methionine
 PP   Anywhere
 MM   -33.98772123886
 //
-ID   Phenylalanine->Leucine
+ID   Phenylalanine->Xle
 FT   MOD_RES
 TG   Phenylalanine
 PP   Anywhere
@@ -670,7 +670,7 @@ TG   Glutamine
 PP   Anywhere
 MM   -25.04939254629
 //
-ID   Histidine->Leucine
+ID   Histidine->Xle
 FT   MOD_RES
 TG   Histidine
 PP   Anywhere
@@ -724,7 +724,7 @@ TG   Aspartic Acid
 PP   Anywhere
 MM   -17.97417917468
 //
-ID   Methionine->Leucine
+ID   Methionine->Xle
 FT   MOD_RES
 TG   Methionine
 PP   Anywhere
@@ -784,7 +784,7 @@ TG   Cysteine
 PP   Anywhere
 MM   -15.97715655483
 //
-ID   Glutamic Acid->Leucine
+ID   Glutamic Acid->Xle
 FT   MOD_RES
 TG   Glutamic Acid
 PP   Anywhere
@@ -796,7 +796,7 @@ TG   Aspartic Acid
 PP   Anywhere
 MM   -15.95852911022
 //
-ID   Lysine->Leucine
+ID   Lysine->Xle
 FT   MOD_RES
 TG   Lysine
 PP   Anywhere
@@ -808,7 +808,7 @@ TG   Glutamic Acid
 PP   Anywhere
 MM   -14.99966564737
 //
-ID   Glutamine->Leucine
+ID   Glutamine->Xle
 FT   MOD_RES
 TG   Glutamine
 PP   Anywhere
@@ -1030,7 +1030,7 @@ TG   Cysteine
 PP   Anywhere
 MM   -1.96150649037
 //
-ID   Aspartic Acid->Leucine
+ID   Aspartic Acid->Xle
 FT   MOD_RES
 TG   Aspartic Acid
 PP   Anywhere
@@ -1048,7 +1048,7 @@ TG   Glutamic Acid
 PP   Anywhere
 MM   -0.984015582910018
 //
-ID   Asparagine->Leucine
+ID   Asparagine->Xle
 FT   MOD_RES
 TG   Asparagine
 PP   Anywhere
@@ -1216,7 +1216,7 @@ TG   Serine
 PP   Anywhere
 MM   10.02073544489
 //
-ID   Cysteine->Leucine
+ID   Cysteine->Xle
 FT   MOD_RES
 TG   Cysteine
 PP   Anywhere
@@ -1234,7 +1234,7 @@ TG   Cysteine
 PP   Anywhere
 MM   12.01775806474
 //
-ID   Threonine->Leucine
+ID   Threonine->Xle
 FT   MOD_RES
 TG   Threonine
 PP   Anywhere
@@ -1270,7 +1270,7 @@ TG   Threonine
 PP   Anywhere
 MM   13.97926455511
 //
-ID   Valine->Leucine
+ID   Valine->Xle
 FT   MOD_RES
 TG   Valine
 PP   Anywhere
@@ -1390,7 +1390,7 @@ TG   Methionine
 PP   Anywhere
 MM   16.0279288256
 //
-ID   Proline->Leucine
+ID   Proline->Xle
 FT   MOD_RES
 TG   Proline
 PP   Anywhere
@@ -1516,7 +1516,7 @@ TG   Cysteine
 PP   Anywhere
 MM   26.0334081292
 //
-ID   Serine->Leucine
+ID   Serine->Xle
 FT   MOD_RES
 TG   Serine
 PP   Anywhere
@@ -1768,7 +1768,7 @@ TG   Serine
 PP   Anywhere
 MM   42.01056468403
 //
-ID   Alanine->Leucine
+ID   Alanine->Xle
 FT   MOD_RES
 TG   Alanine
 PP   Anywhere
@@ -1906,7 +1906,7 @@ TG   Threonine
 PP   Anywhere
 MM   55.05343255487
 //
-ID   Glycine->Leucine
+ID   Glycine->Xle
 FT   MOD_RES
 TG   Glycine
 PP   Anywhere

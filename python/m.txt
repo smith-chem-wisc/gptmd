@@ -1,38 +1,8 @@
-ID   Drop Aspartic Acid from N-terminus
-FT   MOD_RES
-TG   Aspartate
-PP   Any N-terminal
-MM   -115.02694
-//
-ID   Drop Asparagine from N-terminus
-FT   MOD_RES
-TG   Asparagine
-PP   Any N-terminal
-MM   -114.04293
-//
-ID   Leucine falls off of N-Terminus
-FT   MOD_RES
-TG   Leucine
-PP   Any N-terminal
-MM   -113.08406
-//
-ID   Isoleucine falls off of N-Terminus
-FT   MOD_RES
-TG   Isoleucine 
-PP   Any N-terminal
-MM   -113.08406
-//
 ID   Ox Met loss + Acetylation at protein N-terminus
 FT   MOD_RES
 TG   Methionine
 PP   Protein N-terminal
 MM   -105.02484
-//
-ID   Valine disappears
-FT   MOD_RES
-TG   Valine
-PP   Anywhere
-MM   -99.06841
 //
 ID   Carbamidomethylation + H2S fall off Anywhere
 FT   MOD_RES
@@ -45,24 +15,6 @@ FT   MOD_RES
 TG   Methionine
 PP   Any N-terminal
 MM   -89.02992
-//
-ID   Drop Serine from N-terminus
-FT   MOD_RES
-TG   Serine
-PP   Any N-terminal
-MM   -87.03203
-//
-ID   Alanine dissapears
-FT   MOD_RES
-TG   Alanine
-PP   Anywhere
-MM   -71.03711
-//
-ID   Drop Glycine from N-terminus
-FT   MOD_RES
-TG   Glycine
-PP   Any N-terminal
-MM   -57.021464
 //
 ID   Loss of oxidized methionine side chain
 FT   MOD_RES
@@ -118,7 +70,7 @@ MM   -16.042533
 M1   -17.026549
 M2   0.984016
 //
-ID   reduction of Serine anywhere 
+ID   Reduction of Serine anywhere 
 FT   MOD_RES
 TG   Serine
 PP   Anywhere
@@ -382,6 +334,18 @@ MM   42.046950
 M1   14.015650
 M2   28.031300
 //
+ID   Combo acetylation and deamidation 
+FT   COMBO
+MM   42.994581
+M1   42.010565
+M2   0.984016
+//
+ID   Carbamylation of any N-terminus
+FT   MOD_RES
+TG   Any
+PP   Any N-terminal
+MM   43.005814
+//
 ID   Combo oxygen and dioxygen
 FT   COMBO
 MM   47.984744
@@ -412,24 +376,6 @@ TG   Glutamate
 PP   Anywhere
 MM   61.913495
 //
-ID   Sulfation of S anywhere
-FT   MOD_RES
-TG   Serine
-PP   Anywhere
-MM   79.956815
-//
-ID   Sulfation of T anywhere
-FT   MOD_RES
-TG   Threonine
-PP   Anywhere
-MM   79.956815
-//
-ID   Sulfation of Y anywhere
-FT   MOD_RES
-TG   Tyrosine
-PP   Anywhere
-MM   79.956815
-//
 ID   Phosphorylation of S anywhere
 FT   MOD_RES
 TG   Serine
@@ -447,13 +393,6 @@ FT   MOD_RES
 TG   Tyrosine 
 PP   Anywhere
 MM   79.966331
-//
-ID   Valine does not fall off of N-terminus
-FT   MOD_RES
-TG   Any
-PP   Any N-terminal
-PS   V
-MM   99.06841
 //
 ID   Combo Sodium and Phospho
 FT   COMBO
@@ -481,36 +420,6 @@ PP   Any N-terminal
 PS   R
 MM   156.10111
 //
-ID   Hexose of K anywhere 
-FT   MOD_RES
-TG   Lysine 
-PP   Anywhere
-MM   162.052824
-//
-ID   Hexose of N anywhere 
-FT   MOD_RES
-TG   Asparagine
-PP   Anywhere
-MM   162.052824
-//
-ID   Hexose of S anywhere 
-FT   MOD_RES
-TG   Serine
-PP   Anywhere
-MM   162.052824
-//
-ID   Hexose of T anywhere 
-FT   MOD_RES
-TG   Threonine
-PP   Anywhere
-MM   162.052824
-//
-ID   Hexose of any N-terminus
-FT   MOD_RES
-TG   Any
-PP   Any N-terminal
-MM   162.052824
-//
 ID   Add acetylated M at Protein N-terminus
 FT   MOD_RES
 TG   Any
@@ -524,29 +433,4 @@ TG   Any
 PP   Any N-terminal
 PS   M
 MM   189.045969
-//
-ID   Add KA to any Proline N-Terminus
-FT   MOD_RES
-TG   Proline
-PP   Any N-terminal
-PS   A
-MM   199.13207
-//
-ID   HexNAc of S anywhere
-FT   MOD_RES
-TG   Serine
-PP   Anywhere
-MM   203.079373
-//
-ID   HexNAc of T anywhere
-FT   MOD_RES
-TG   Threonine 
-PP   Anywhere
-MM   203.079373
-//
-ID   HexNAc of N anywhere
-FT   MOD_RES
-TG   Asparagine
-PP   Anywhere
-MM   203.079373
 //
