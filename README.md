@@ -91,7 +91,7 @@ trying an alternate package manager, such as Canopy, which can be found
 
 	Example Command Line:
 
-	\Dir>bpython gptmd.py -x ../uniprot.xml -t ../sub_ptmlist_regular.txt -s ../PSMs.tsv -o ../test_output.xml
+	>python gptmd.py -x ../uniprot.xml -t ../sub_ptmlist_regular.txt -s ../PSMs.tsv -o ../test_output.xml
 
 ###Relevant Manuscripts
 
