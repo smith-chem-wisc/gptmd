@@ -9,7 +9,7 @@ However, we have made major improvements in the process since that time. We dire
 to [MetaMorpheus](https://github.com/stefanks/MetaMorpheus) - single integrated software package for bottom-up proteomics that searches, calibrates 
 and discovers new PTMs.
 
-New users are STRONGLY encouraged to begin using MetaMorpheus, rather than use the former combination of 
+New users are STRONGLY encouraged to begin using [MetaMorpheus](https://github.com/stefanks/MetaMorpheus), rather than use the former combination of 
 Morpheus and G-PTMD. 
 
 
@@ -106,7 +106,7 @@ trying an alternate package manager, such as Canopy, which can be found
 
 ###Relevant Manuscripts
 
-* [GPTMD manuscript in revision](http://pubs.acs.org/journal/jprobs)
+* [Global Post-translational Modification Discovery--J. Proteome Res., 2016 Just Accepted](http://pubs.acs.org/doi/abs/10.1021/acs.jproteome.6b00034)
 
 * [Global Identification of Protein Post-translational Modifications in a Single-Pass Database Search--J. Proteome Res., 2015, 14 (11), pp 4714–4720](http://pubs.acs.org/doi/abs/10.1021/acs.jproteome.5b00599)
 
