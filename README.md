@@ -6,10 +6,10 @@ Software to augment a UniProt XML database with PTMs discovered using [Morpheus]
 The manuscript describing this work entitled "Global Post-translational Modification Discovery" can be found [here.](http://pubs.acs.org/doi/abs/10.1021/acs.jproteome.6b00034) 
 Software provided below will enable the user to reproduce that work and also create custom databases.
 However, we have made major improvements in the process since that time. We direct your attention
-to [MetaMorpheus](https://github.com/stefanks/MetaMorpheus) - single integrated software package for bottom-up proteomics that searches, calibrates 
+to [MetaMorpheus](https://github.com/smith-chem-wisc/MetaMorpheus) - single integrated software package for bottom-up proteomics that searches, calibrates 
 and discovers new PTMs.
 
-New users are STRONGLY encouraged to begin using [MetaMorpheus](https://github.com/stefanks/MetaMorpheus), rather than use the former combination of 
+New users are STRONGLY encouraged to begin using [MetaMorpheus](https://github.com/ssmith-chem-wisc/MetaMorpheus), rather than use the former combination of 
 Morpheus and G-PTMD. 
 
 
