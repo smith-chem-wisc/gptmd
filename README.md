@@ -9,7 +9,7 @@ However, we have made major improvements in the process since that time. We dire
 to [MetaMorpheus](https://github.com/smith-chem-wisc/MetaMorpheus) - single integrated software package for bottom-up proteomics that searches, calibrates 
 and discovers new PTMs.
 
-New users are STRONGLY encouraged to begin using [MetaMorpheus](https://github.com/ssmith-chem-wisc/MetaMorpheus), rather than use the former combination of 
+New users are STRONGLY encouraged to begin using [MetaMorpheus](https://github.com/smith-chem-wisc/MetaMorpheus), rather than use the former combination of 
 Morpheus and G-PTMD. 
 
 
