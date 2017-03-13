@@ -13,6 +13,9 @@ New users are STRONGLY encouraged to begin using [MetaMorpheus](https://github.c
 Morpheus and G-PTMD. 
 
 
+#You should really use GPTMD in [MetaMorpheus](https://github.com/smith-chem-wisc/MetaMorpheus) because it is much faster and much more accurate!
+
+
 ##General Overview
 
 G-PTMD is a tool used to expand the scope of peptide identification to include 
