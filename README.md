@@ -1,8 +1,8 @@
-#GPTMD
+# GPTMD
 
 Software to augment a UniProt XML database with PTMs discovered using [Morpheus](http://cwenger.github.io/Morpheus/)
 
-##New and Improved
+## New and Improved
 The manuscript describing this work entitled "Global Post-translational Modification Discovery" can be found [here.](http://pubs.acs.org/doi/abs/10.1021/acs.jproteome.6b00034) 
 Software provided below will enable the user to reproduce that work and also create custom databases.
 However, we have made major improvements in the process since that time. We direct your attention
@@ -13,10 +13,10 @@ New users are STRONGLY encouraged to begin using [MetaMorpheus](https://github.c
 Morpheus and G-PTMD. 
 
 
-#You should really use GPTMD in [MetaMorpheus](https://github.com/smith-chem-wisc/MetaMorpheus) because it is much faster and much more accurate!
+# You should really use GPTMD in [MetaMorpheus](https://github.com/smith-chem-wisc/MetaMorpheus) because it is much faster and much more accurate!
 
 
-##General Overview
+## General Overview
 
 G-PTMD is a tool used to expand the scope of peptide identification to include 
 specific post-translational modifications.  Currently, identifying peptides with 
@@ -47,7 +47,7 @@ leading to better search results upon the second pass without incurring huge dat
 associated with blindly adding variable modifications.
 
 
-##General Requirements
+## General Requirements
 
 The following files must be present in the folder with the executable. If not, they are automatically downloaded (to update a file to a newer version, delete it, and the application will download a new version). This is the only network usage by the application. 
 
@@ -60,18 +60,17 @@ The following files must be present in the folder with the executable. If not, t
   [http://www.uniprot.org/docs/ptmlist.txt](http://www.uniprot.org/docs/ptmlist.txt) 
 
 
-##Operating System Requirements and Usage
+## Operating System Requirements and Usage
 
-###Windows Perl Version
-####System
-####Usage
+### Windows Perl Version
+#### System
+#### Usage
 
-###Windows C# Version
-####System
-#####
+### Windows C# Version
+#### You should really use GPTMD in [MetaMorpheus](https://github.com/smith-chem-wisc/MetaMorpheus) because it is much faster and much more accurate!
 
-###Linux Python Version
-####System
+### Linux Python Version
+#### System
 - 8 GB of RAM is recommended
 - python v2.7.10 (64 bit)
 See https://www.python.org/downloads/ for installation instructions.
@@ -81,7 +80,7 @@ This includes the "pip" package manager.
 trying an alternate package manager, such as Canopy, which can be found 
 [here](https://www.enthought.com/products/canopy/).
 
-####Usage
+#### Usage
 
 	Options:
 	
@@ -107,7 +106,7 @@ trying an alternate package manager, such as Canopy, which can be found
 
 	>python gptmd.py -x ../uniprot.xml -t ../sub_ptmlist_regular.txt -s ../PSMs.tsv -o ../test_output.xml
 
-###Relevant Manuscripts
+### Relevant Manuscripts
 
 * [Global Post-translational Modification Discovery--J. Proteome Res., 2016 Just Accepted](http://pubs.acs.org/doi/abs/10.1021/acs.jproteome.6b00034)
 
