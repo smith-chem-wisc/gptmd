@@ -1,6 +1,7 @@
-# GPTMD
+# GPTMD We've Moved!!!!
+# GPTMD is now fully integrated into [MetaMorpheus](https://github.com/smith-chem-wisc/MetaMorpheus). All users should MetaMorpheus.
 
-Software to augment a UniProt XML database with PTMs discovered using [Morpheus](http://cwenger.github.io/Morpheus/)
+The original G-PTM-D program that augmented a UniProt XML database with PTMs discovered using an open mass search in [Morpheus](http://cwenger.github.io/Morpheus/)
 
 ## New and Improved
 The manuscript describing this work entitled "Global Post-translational Modification Discovery" can be found [here.](http://pubs.acs.org/doi/abs/10.1021/acs.jproteome.6b00034) 
